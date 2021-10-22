@@ -31,6 +31,10 @@ Examples bellow assume following:
 <button class="a box with a primary surface">OK</button>
 ```
 
+## Playground
+
+[Try it out](https://codepen.io/yakubiv/pen/BadQgZw?editors=1000) on CodePen.
+
 ## License
 
 [MIT](./LICENSE)
