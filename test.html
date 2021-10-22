@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Every Color</title>
+
+<link rel="stylesheet" href="palette.css">
+<link rel="stylesheet" href="theme.css">
+<link rel="stylesheet" href="color.css">
+
+<main class="stack"></main>
+
+<aside class="stack">
+  <div class="box & stack with surface">
+    <p>box & stack with surface</p>
+    <p class="box with primary surface">primary surface</p>
+    <p class="box with vibrant surface">vibrant surface</p>
+  </div>
+
+  <div class="box & stack with vibrant surface">
+    <p>box & stack with vibrant surface</p>
+    <p class="box with primary surface">box with primary surface</p>
+    <p class="box with primary neutral surface">box with primary neutral surface</p>
+  </div>
+</aside>
+
+<script id="spec">
+  const full = [
+    'default neutral surface and major content',
+    'default neutral surface and minor content',
+    'default vibrant surface and major content',
+    'default vibrant surface and minor content',
+
+    'primary neutral surface and major content',
+    'primary neutral surface and minor content',
+    'primary vibrant surface and major content',
+    'primary vibrant surface and minor content',
+
+    'default major content',
+    'default minor content',
+    'primary major content',
+    'primary minor content',
+  ]
+
+  const short = [
+    '[default] neutral surface and major content',
+    '[default] vibrant surface and major content',
+    '[default neutral] surface and major content',
+    '[default neutral] surface and [major] content',
+    '[default neutral] surface and [major content]',
+
+    'primary [vibrant] surface and major content',
+    'primary [vibrant] surface and major content',
+    'primary [vibrant] surface and [major] content',
+    'primary [vibrant] surface and [major content]',
+    'primary neutral surface and [major content]',
+
+    '[default] major content',
+    '[default] minor content',
+    '[default] minor [content]',
+    '[default] minor [content]',
+
+    'primary [major] content',
+    'primary [major content]',
+    'primary major [content]',
+  ]
+
+  const extra = ['info', 'positive', 'warning', 'danger'].map(accent =>
+    ['neutral', 'vibrant'].map(contrast =>
+      ['major', 'minor'].map(emphasis =>
+        [contrast, accent, 'surface', 'and', emphasis, 'content'].join(' '))))
+    .flat(2)
+
+  const edge = [
+    'vibrant major content', // vibrant should not be applied
+  ]
+
+  const specs = [
+    ...full,
+    ...extra,
+    ...short,
+    ...edge,
+  ].map(className => `a box with ${className}`)
+
+  const mountPoint = document.querySelector('main')
+  specs
+    .map((className) => {
+      const element = document.createElement('p')
+      element.className = className
+      element.textContent =
+        className.charAt().toUpperCase() + className.slice(1)
+      return element
+    })
+    .forEach(element => mountPoint.append(element))
+</script>
+
+<style id="example">
+  :root {
+    font-family: system-ui;
+    line-height: 1.5;
+  }
+
+  body {
+    margin: 0;
+    padding: var(--size-400);
+  }
+</style>
+
+<style id="size">
+  :root {
+    --size-400: 1rem;
+    --size-500: 1.25rem;
+    --size-600: 1.5rem;
+    --size-700: 2rem;
+  }
+
+  :root {
+    --space-400: var(--size-600);
+    --space-500: var(--size-700);
+  }
+</style>
+
+<style id="layout">
+  .stack > * {
+    margin-block: 0;
+  }
+
+  .stack > * + * {
+    margin-block-start: var(--space-400);
+  }
+
+  .box {
+    padding-inline: calc(var(--size-400, 1px) - 1px);
+    padding-block: calc(var(--size-400, 1px) - 1px);
+    border: 1px solid transparent;
+    border-radius: .25rem;
+
+  }
+</style>

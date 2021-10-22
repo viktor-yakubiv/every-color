@@ -1,0 +1,224 @@
+/**
+ * Background
+ *
+ * Applies general background for any surface or content.
+ */
+:root {
+  --color-major-content: var(--color-default-neutral-major-content);
+  --color-minor-content: var(--color-default-neutral-minor-content);
+
+  background-color: var(--color-background);
+  color: var(--color-major-content);
+}
+
+/**
+ * Content
+ *
+ * Applies color for text and icons. It could be major with high emphasis
+ * or minor — with low emphasis respectively. Also, it respects color accents
+ * if and only if used on the neutral surface or background.
+ *
+ * Bare content is default and neutral in regard to the current theme.
+ */
+
+.content {
+  --color-neutral-major-content: var(--color-default-neutral-major-content);
+  --color-neutral-minor-content: var(--color-default-neutral-minor-content);
+  --color-major-content: var(--color-neutral-major-content);
+  --color-minor-content: var(--color-neutral-minor-content);
+  --color-content: var(--color-major-content);
+  color: var(--color-content);
+}
+
+
+/**
+ * Surface
+ *
+ * Applies background for itself along with the content colors
+ * that could be used on the current surface.
+ *
+ * Bare surface expects to be default and neutral in regard to the current
+ * theme. Can be configured with accent and/or contrast classes.
+ */
+
+.surface {
+  --color-neutral-surface: var(--color-default-neutral-surface);
+  --color-vibrant-surface: var(--color-default-vibrant-surface);
+  --color-surface: var(--color-neutral-surface);
+  background-color: var(--color-surface);
+
+  --color-neutral-major-content: var(--color-default-neutral-major-content);
+  --color-neutral-minor-content: var(--color-default-neutral-minor-content);
+  --color-vibrant-major-content: var(--color-default-vibrant-major-content);
+  --color-vibrant-minor-content: var(--color-default-vibrant-minor-content);
+  --color-major-content: var(--color-neutral-major-content);
+  --color-minor-content: var(--color-neutral-minor-content);
+  --color-content: var(--color-major-content);
+  color: var(--color-content);
+}
+
+
+/**
+ * Accent
+ *
+ * Applies a color schema to either content or surface.
+ *
+ * An accent could be used on a neutral or a vibrant surface in regards to
+ * the current theme. Color accents apply both and rely on a proper resolution
+ * by the the surface itself.
+ *
+ * See Contrast modifiers as well.
+ */
+
+.default {
+  --color-neutral-surface: var(--color-default-neutral-surface);
+  --color-neutral-outline: var(--color-default-neutral-outline);
+  --color-neutral-major-content: var(--color-default-neutral-major-content);
+  --color-neutral-minor-content: var(--color-default-neutral-minor-content);
+
+  --color-vibrant-surface: var(--color-default-vibrant-surface);
+  --color-vibrant-outline: var(--color-default-vibrant-outline);
+  --color-vibrant-major-content: var(--color-default-vibrant-major-content);
+  --color-vibrant-minor-content: var(--color-default-vibrant-minor-content);
+}
+
+.primary {
+  --color-neutral-surface: var(--color-primary-neutral-surface);
+  --color-neutral-outline: var(--color-primary-neutral-outline);
+  --color-neutral-major-content: var(--color-primary-neutral-major-content);
+  --color-neutral-minor-content: var(--color-primary-neutral-minor-content);
+
+  --color-vibrant-surface: var(--color-primary-vibrant-surface);
+  --color-vibrant-outline: var(--color-primary-vibrant-outline);
+  --color-vibrant-major-content: var(--color-primary-vibrant-major-content);
+  --color-vibrant-minor-content: var(--color-primary-vibrant-minor-content);
+}
+
+.info {
+  --color-neutral-surface: var(--color-info-neutral-surface);
+  --color-neutral-outline: var(--color-info-neutral-outline);
+  --color-neutral-major-content: var(--color-info-neutral-major-content);
+  --color-neutral-minor-content: var(--color-info-neutral-minor-content);
+
+  --color-vibrant-surface: var(--color-info-vibrant-surface);
+  --color-vibrant-outline: var(--color-info-vibrant-outline);
+  --color-vibrant-major-content: var(--color-info-vibrant-major-content);
+  --color-vibrant-minor-content: var(--color-info-vibrant-minor-content);
+}
+
+.positive {
+  --color-neutral-surface: var(--color-positive-neutral-surface);
+  --color-neutral-outline: var(--color-positive-neutral-outline);
+  --color-neutral-major-content: var(--color-positive-neutral-major-content);
+  --color-neutral-minor-content: var(--color-positive-neutral-minor-content);
+
+  --color-vibrant-surface: var(--color-positive-vibrant-surface);
+  --color-vibrant-outline: var(--color-positive-vibrant-outline);
+  --color-vibrant-major-content: var(--color-positive-vibrant-major-content);
+  --color-vibrant-minor-content: var(--color-positive-vibrant-minor-content);
+}
+
+.warning {
+  --color-neutral-surface: var(--color-warning-neutral-surface);
+  --color-neutral-outline: var(--color-warning-neutral-outline);
+  --color-neutral-major-content: var(--color-warning-neutral-major-content);
+  --color-neutral-minor-content: var(--color-warning-neutral-minor-content);
+
+  --color-vibrant-surface: var(--color-warning-vibrant-surface);
+  --color-vibrant-outline: var(--color-warning-vibrant-outline);
+  --color-vibrant-major-content: var(--color-warning-vibrant-major-content);
+  --color-vibrant-minor-content: var(--color-warning-vibrant-minor-content);
+}
+
+.danger {
+  --color-neutral-surface: var(--color-danger-neutral-surface);
+  --color-neutral-outline: var(--color-danger-neutral-outline);
+  --color-neutral-major-content: var(--color-danger-neutral-major-content);
+  --color-neutral-minor-content: var(--color-danger-neutral-minor-content);
+
+  --color-vibrant-surface: var(--color-danger-vibrant-surface);
+  --color-vibrant-outline: var(--color-danger-vibrant-outline);
+  --color-vibrant-major-content: var(--color-danger-vibrant-major-content);
+  --color-vibrant-minor-content: var(--color-danger-vibrant-minor-content);
+}
+
+
+/**
+ * Contrast
+ *
+ * Applies color contrast in regards to the current theme. It could be either
+ * neutral — soft or blended into the current theme, or vibrant — contrasting
+ * with the current theme.
+ *
+ * Contrast modifiers apply final surface and content colors.
+ */
+.neutral {
+  --color-surface: var(--color-neutral-surface);
+  --color-outline: var(--color-neutral-outline);
+  --color-major-content: var(--color-neutral-major-content);
+  --color-minor-content: var(--color-neutral-minor-content);
+}
+
+.vibrant {
+  --color-surface: var(--color-vibrant-surface);
+  --color-outline: var(--color-vibrant-outline);
+  --color-major-content: var(--color-vibrant-major-content);
+  --color-minor-content: var(--color-vibrant-minor-content);
+}
+
+
+/**
+ * Emphasis
+ *
+ * Applies emphasis level to text and icons. Could be major — high, contrasting
+ * well with the surface, or minor (medium) — contrasting with surface to
+ * be noticed but do not create noise.
+ */
+
+.major {
+  --color-content: var(--color-major-content);
+}
+
+.minor {
+  --color-content: var(--color-minor-content);
+}
+
+
+/**
+ * Convenient defaults
+ *
+ * Defaults that are applied for convenience of writing code or expressing
+ * yourself. These decisions could be especially challenged.
+ *
+ * 1. Emphasis accents could be applied on text level elements where
+ *    long class names are not handy; they apply .content by themselves.
+ *
+ * 2. Color accents could be applied on text or icons in the content stream,
+ *    where long class names are not as handy; they apply .content as well.
+ *
+ * 3. Surfaces with color accents which are different from the theme background
+ *    or default, are vibrant.
+ *
+ * Please, 👍, 👎 or 💬 if you have an opinion.
+ */
+
+:where(.minor, .major) {
+  --color-neutral-major-content: var(--color-default-neutral-major-content);
+  --color-neutral-minor-content: var(--color-default-neutral-minor-content);
+  --color-major-content: var(--color-neutral-major-content);
+  --color-minor-content: var(--color-neutral-minor-content);
+  color: var(--color-content);
+}
+
+:where(.primary, .info, .positive, .warning, .danger) {
+  --color-major-content: var(--color-neutral-major-content);
+  --color-minor-content: var(--color-neutral-minor-content);
+  --color-content: var(--color-major-content);
+  color: var(--color-content);
+}
+
+:not(.neutral):where(.surface):where(.primary, .info, .positive, .warning, .danger) {
+  --color-surface: var(--color-vibrant-surface);
+  --color-major-content: var(--color-vibrant-major-content);
+  --color-minor-content: var(--color-vibrant-minor-content);
+}
