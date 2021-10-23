@@ -1,12 +1,12 @@
 # Every Color
 
-_Write English, not a code._
+_Write language, not code._
 
-A library, letting you write semantic CSS classes
-that look like a sentences.
+A utility class library,
+letting you write semantically correct and concise sentences
+in the `class` attribute.
 
-It derives from the common theming techniques and slang used by designers.
-See examples below.
+Grammar derives from the common design slang.
 
 ## API
 
