@@ -131,8 +131,13 @@
   .box {
     padding-inline: calc(var(--size-400, 1px) - 1px);
     padding-block: calc(var(--size-400, 1px) - 1px);
-    border: 1px solid transparent;
+    border-width: 1px;
+    border-style: solid;
     border-radius: .25rem;
 
+  }
+
+  :where(.box) {
+    border-color: transparent;
   }
 </style>

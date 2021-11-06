@@ -43,58 +43,58 @@
   --color-default-neutral-outline: #0000001f;
   --color-default-neutral-major-content: var(--color-base-neutral-major-content);
   --color-default-neutral-minor-content: var(--color-base-neutral-minor-content);
-  --color-default-vibrant-surface: var(--neutral-900);
+  --color-default-vibrant-surface: #000000cc;
   --color-default-vibrant-outline: transparent;
   --color-default-vibrant-major-content: var(--color-base-vibrant-major-content);
   --color-default-vibrant-minor-content: var(--color-base-vibrant-minor-content);
 
   --color-primary-neutral-surface: var(--primary-100);
-  --color-primary-neutral-outline: #0000001f;
+  --color-primary-neutral-outline: var(--primary-500);
   --color-primary-neutral-major-content: var(--primary-500);
   --color-primary-neutral-minor-content: color(var(--primary-500) alpha(60%));
   --color-primary-neutral-minor-content: #3f51b5ab;
   --color-primary-vibrant-surface: var(--primary-500);
-  --color-primary-vibrant-outline: #0000001f;
+  --color-primary-vibrant-outline: transparent;
   --color-primary-vibrant-major-content: var(--color-default-vibrant-major-content);
   --color-primary-vibrant-minor-content: var(--color-default-vibrant-minor-content);
 
   --color-info-neutral-surface: var(--info-100);
-  --color-info-neutral-outline: #0000001f;
+  --color-info-neutral-outline: var(--info-500);
   --color-info-neutral-major-content: var(--info-500);
   --color-info-neutral-minor-content: color(var(--info-500) alpha(60%));
   --color-info-neutral-minor-content: #0099e0ab;
   --color-info-vibrant-surface: var(--info-500);
-  --color-info-vibrant-outline: #0000001f;
+  --color-info-vibrant-outline: transparent;
   --color-info-vibrant-major-content: var(--color-default-vibrant-major-content);
   --color-info-vibrant-minor-content: var(--color-default-vibrant-minor-content);
 
   --color-positive-neutral-surface: var(--positive-100);
-  --color-positive-neutral-outline: #0000001f;
+  --color-positive-neutral-outline: var(--positive-500);
   --color-positive-neutral-major-content: var(--positive-500);
   --color-positive-neutral-minor-content: color(var(--positive-500) alpha(60%));
   --color-positive-neutral-minor-content: #0c8c3fab;
   --color-positive-vibrant-surface: var(--positive-500);
-  --color-positive-vibrant-outline: #0000001f;
+  --color-positive-vibrant-outline: transparent;
   --color-positive-vibrant-major-content: var(--color-default-vibrant-major-content);
   --color-positive-vibrant-minor-content: var(--color-default-vibrant-minor-content);
 
   --color-warning-neutral-surface: var(--warning-100);
-  --color-warning-neutral-outline: #0000001f;
+  --color-warning-neutral-outline: var(--warning-500);
   --color-warning-neutral-major-content: var(--warning-500);
   --color-warning-neutral-minor-content: color(var(--warning-500) alpha(60%));
   --color-warning-neutral-minor-content: #dd7b11ab;
   --color-warning-vibrant-surface: var(--warning-500);
-  --color-warning-vibrant-outline: #0000001f;
+  --color-warning-vibrant-outline: transparent;
   --color-warning-vibrant-major-content: var(--color-default-vibrant-major-content);
   --color-warning-vibrant-minor-content: var(--color-default-vibrant-minor-content);
 
   --color-danger-neutral-surface: var(--danger-100);
-  --color-danger-neutral-outline: #0000001f;
+  --color-danger-neutral-outline: var(--danger-500);
   --color-danger-neutral-major-content: var(--danger-500);
   --color-danger-neutral-minor-content: color(var(--danger-500) alpha(60%));
   --color-danger-neutral-minor-content: #d82020ab;
   --color-danger-vibrant-surface: var(--danger-500);
-  --color-danger-vibrant-outline: #0000001f;
+  --color-danger-vibrant-outline: transparent;
   --color-danger-vibrant-major-content: var(--color-default-vibrant-major-content);
   --color-danger-vibrant-minor-content: var(--color-default-vibrant-minor-content);
 }

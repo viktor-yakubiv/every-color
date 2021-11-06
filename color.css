@@ -55,6 +55,11 @@
   --color-minor-content: var(--color-neutral-minor-content);
   --color-content: var(--color-major-content);
   color: var(--color-content);
+
+  --color-neutral-outline: var(--color-default-neutral-outline);
+  --color-vibrant-outline: var(--color-default-vibrant-outline);
+  --color-outline: var(--color-neutral-outline);
+  border-color: transparent;
 }
 
 
@@ -164,6 +169,14 @@
   --color-outline: var(--color-vibrant-outline);
   --color-major-content: var(--color-vibrant-major-content);
   --color-minor-content: var(--color-vibrant-minor-content);
+}
+
+/**
+ * Outline
+ */
+
+.outlined {
+  border-color: var(--color-outline);
 }
 
 
