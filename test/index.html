@@ -3,11 +3,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Every Color</title>
 
-<link rel="stylesheet" href="palette.css">
-<link rel="stylesheet" href="theme.css">
-<link rel="stylesheet" href="color.css">
+<link rel="stylesheet" href="../palette.css">
+<link rel="stylesheet" href="../theme.css">
+<link rel="stylesheet" href="../color.css">
 
-<main class="stack"></main>
+<main class="stack">
+  <section id="basic" class="stack">
+    <h2>Basic</h2>
+    <p>Full chain of class names work correctly.</p>
+  </section>
+
+  <section id="shorthands" class="stack">
+    <h2>Shorthands</h2>
+    <p>Some class could be omitted preserving the correct behavior.</p>
+  </section>
+
+  <section id="extra-accents" class="stack">
+    <h2>Semantic accents</h2>
+  </section>
+
+  <section id="edge-cases" class="stack">
+    <h2>Some edge cases</h2>
+  </section>
+</main>
 
 <aside class="stack">
   <div class="box & stack with surface">
@@ -21,9 +39,18 @@
     <p class="box with primary surface">box with primary surface</p>
     <p class="box with primary neutral surface">box with primary neutral surface</p>
   </div>
+
+  <div class="box & stack with primary surface">
+    <p>box & stack with vibrant surface</p>
+    <p class="box with primary surface">box with primary surface</p>
+    <p class="box with primary neutral surface">box with primary neutral surface</p>
+  </div>
 </aside>
 
-<script id="spec">
+<script type="module" id="spec">
+  import { mount } from './engine.js'
+  import { box, switcher } from './layout.js'
+
   const full = [
     'default neutral surface and major content',
     'default neutral surface and minor content',
@@ -64,33 +91,28 @@
     'primary major [content]',
   ]
 
-  const extra = ['info', 'positive', 'warning', 'danger'].map(accent =>
-    ['neutral', 'vibrant'].map(contrast =>
-      ['major', 'minor'].map(emphasis =>
+  const semanticAccentList = ['info', 'positive', 'warning', 'danger']
+  const accentList = ['default', 'primary', ...semanticAccentList]
+  const contrastList = ['neutral', 'vibrant']
+  const emphasisList = ['major', 'minor']
+
+  const extra = semanticAccentList.map(accent =>
+    contrastList.map(contrast =>
+      emphasisList.map(emphasis =>
         [contrast, accent, 'surface', 'and', emphasis, 'content'].join(' '))))
     .flat(2)
+
+  const generate = (list) =>
+    list.map(className => box({ className }, [className]))
 
   const edge = [
     'vibrant major content', // vibrant should not be applied
   ]
 
-  const specs = [
-    ...full,
-    ...extra,
-    ...short,
-    ...edge,
-  ].map(className => `a box with ${className}`)
-
-  const mountPoint = document.querySelector('main')
-  specs
-    .map((className) => {
-      const element = document.createElement('p')
-      element.className = className
-      element.textContent =
-        className.charAt().toUpperCase() + className.slice(1)
-      return element
-    })
-    .forEach(element => mountPoint.append(element))
+  generate(full).forEach(e => mount(e, '#basic'))
+  generate(short).forEach(e => mount(e, '#shorthands'))
+  generate(extra).forEach(e => mount(e, '#extra-accents'))
+  generate(edge).forEach(e => mount(e, '#edge-cases'))
 </script>
 
 <style id="example">
@@ -114,8 +136,8 @@
   }
 
   :root {
-    --space-400: var(--size-600);
-    --space-500: var(--size-700);
+    --space-400: var(--size-400);
+    --space-500: var(--size-600);
   }
 </style>
 
@@ -126,6 +148,17 @@
 
   .stack > * + * {
     margin-block-start: var(--space-400);
+  }
+
+  .switcher {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-400) var(--space-500);
+  }
+
+  .switcher > * {
+    flex-grow: 1;
+    flex-basis: calc((30rem - 100%) * 999);
   }
 
   .box {
