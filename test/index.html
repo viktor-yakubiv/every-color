@@ -8,18 +8,30 @@
 <link rel="stylesheet" href="../color.css">
 
 <main class="stack">
-  <section id="basic" class="stack">
-    <h2>Basic</h2>
-    <p>Full chain of class names work correctly.</p>
+  <section id="fullchain" class="stack">
+    <h2>Fully specified</h2>
+    <p class="minor">Full chain of class names work correctly.</p>
+
+    <section id="content-fullchain" class="stack">
+      <h3>Content</h3>
+    </section>
+
+    <section id="surface-fullchain" class="stack">
+      <h3>Surface</h3>
+    </section>
   </section>
 
   <section id="shorthands" class="stack">
     <h2>Shorthands</h2>
     <p>Some class could be omitted preserving the correct behavior.</p>
-  </section>
 
-  <section id="extra-accents" class="stack">
-    <h2>Semantic accents</h2>
+    <section id="content-shorthands" class="stack">
+      <h3>Content</h3>
+    </section>
+
+    <section id="surface-shorthands" class="stack">
+      <h3>Surface</h3>
+    </section>
   </section>
 
   <section id="edge-cases" class="stack">
@@ -48,53 +60,53 @@
 </aside>
 
 <script type="module" id="spec">
-  import { mount } from './engine.js'
-  import { box, switcher } from './layout.js'
-
-  const full = [
-    'default neutral surface and major content',
-    'default neutral surface and minor content',
-    'default vibrant surface and major content',
-    'default vibrant surface and minor content',
-
-    'primary neutral surface and major content',
-    'primary neutral surface and minor content',
-    'primary vibrant surface and major content',
-    'primary vibrant surface and minor content',
-
-    'default major content',
-    'default minor content',
-    'primary major content',
-    'primary minor content',
-  ]
-
-  const short = [
-    '[default] neutral surface and major content',
-    '[default] vibrant surface and major content',
-    '[default neutral] surface and major content',
-    '[default neutral] surface and [major] content',
-    '[default neutral] surface and [major content]',
-
-    'primary [vibrant] surface and major content',
-    'primary [vibrant] surface and major content',
-    'primary [vibrant] surface and [major] content',
-    'primary [vibrant] surface and [major content]',
-    'primary neutral surface and [major content]',
-
-    '[default] major content',
-    '[default] minor content',
-    '[default] minor [content]',
-    '[default] minor [content]',
-
-    'primary [major] content',
-    'primary [major content]',
-    'primary major [content]',
-  ]
+  import { element, mount } from './engine.js'
+  import { box, stack, switcher } from './layout.js'
+  import { join } from './class-names.js'
 
   const semanticAccentList = ['info', 'positive', 'warning', 'danger']
   const accentList = ['default', 'primary', ...semanticAccentList]
   const contrastList = ['neutral', 'vibrant']
   const emphasisList = ['major', 'minor']
+
+  const contentFullchain = accentList.map(accent =>
+    emphasisList.map(emphasis =>
+      join(accent, emphasis, 'content')
+    )
+  )
+
+  const surfaceFullchain = accentList.map(accent =>
+    contrastList.flatMap(contrast =>
+      emphasisList.map(emphasis =>
+        join(accent, contrast, 'surface', 'and', emphasis, 'content')
+      )
+    )
+  )
+
+  const contentShorthands = [[
+    '[default] major content',
+    '[default] minor content',
+    '[default] minor [content]',
+    '[default] minor [content]',
+    ], [
+    'primary [major] content',
+    'primary [major content]',
+    'primary major [content]',
+  ]]
+
+  const surfaceShorthands = [[
+    '[default] neutral surface and major content',
+    '[default] vibrant surface and major content',
+    '[default neutral] surface and major content',
+    '[default neutral] surface and [major] content',
+    '[default neutral] surface and [major content]',
+  ], [
+    'primary [vibrant] surface and major content',
+    'primary [vibrant] surface and major content',
+    'primary [vibrant] surface and [major] content',
+    'primary [vibrant] surface and [major content]',
+    'primary neutral surface and [major content]',
+  ]]
 
   const extra = semanticAccentList.map(accent =>
     contrastList.map(contrast =>
@@ -102,17 +114,27 @@
         [contrast, accent, 'surface', 'and', emphasis, 'content'].join(' '))))
     .flat(2)
 
-  const generate = (list) =>
-    list.map(className => box({ className }, [className]))
+  const generate = (target, layouts = [switcher, stack, box]) => {
+    if (typeof target == 'string') {
+      const [layout] = layouts.slice(-1)
+      return layout({ className: target }, [target])
+    }
+
+    const [layout] = layouts
+    const nextLayouts = layouts.slice(Math.max(layouts.length - 2, 0))
+    const children = target.map(child => generate(child, nextLayouts))
+    return layout({}, children)
+  }
 
   const edge = [
     'vibrant major content', // vibrant should not be applied
   ]
 
-  generate(full).forEach(e => mount(e, '#basic'))
-  generate(short).forEach(e => mount(e, '#shorthands'))
-  generate(extra).forEach(e => mount(e, '#extra-accents'))
-  generate(edge).forEach(e => mount(e, '#edge-cases'))
+  mount(generate(contentFullchain, [switcher, stack, element]), '#content-fullchain')
+  mount(generate(surfaceFullchain), '#surface-fullchain')
+  mount(generate(contentShorthands, [switcher, stack, element]), '#content-shorthands')
+  mount(generate(surfaceShorthands), '#surface-shorthands')
+  mount(generate(edge), '#edge-cases')
 </script>
 
 <style id="example">
@@ -142,18 +164,24 @@
 </style>
 
 <style id="layout">
+  .stack {
+    --row-gap: var(--space-400);
+  }
+
   .stack > * {
     margin-block: 0;
   }
 
   .stack > * + * {
-    margin-block-start: var(--space-400);
+    margin-block-start: var(--row-gap);
   }
 
   .switcher {
+    --row-gap: var(--space-400);
+    --col-gap: var(--space-500);
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-400) var(--space-500);
+    gap: var(--row-gap) var(--col-gap);
   }
 
   .switcher > * {
@@ -162,10 +190,11 @@
   }
 
   .box {
-    padding-inline: calc(var(--size-400, 1px) - 1px);
-    padding-block: calc(var(--size-400, 1px) - 1px);
+    --inset-inline: var(--size-400);
+    --inset-block: var(--size-400);
+    padding-inline: calc(max(1px, var(--inset-inline)) - 1px);
+    padding-block: calc(max(1px, var(--inset-block)) - 1px);
     border: 1px solid transparent;
     border-radius: .25rem;
-
   }
 </style>

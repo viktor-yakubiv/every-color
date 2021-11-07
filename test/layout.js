@@ -9,6 +9,14 @@ const box = ({ className, ...props } = {}, children) => element(
   children
 )
 
+const stack = ({ className, ...props } = {}, children) => element(
+  {
+    ...props,
+    className: combine('a stack', className),
+  },
+  children
+)
+
 const switcher = ({ className, ...props } = {}, children) => element(
   {
     ...props,
@@ -17,4 +25,4 @@ const switcher = ({ className, ...props } = {}, children) => element(
   children
 )
 
-export { box, switcher }
+export { box, stack, switcher }
