@@ -9,6 +9,15 @@ const element = ({ tag = 'div', ...props } = {}, children = []) => {
   return e
 }
 
+const fragment = (ignoredProps, children = []) => {
+  const f = new DocumentFragment()
+
+  f.append(...children.map(child =>
+    typeof child == 'string' ? document.createTextNode(child) : child))
+
+  return f
+}
+
 const mount = (e, target) => {
   const container = typeof target == 'string'
     ? document.querySelector(target)
@@ -17,4 +26,4 @@ const mount = (e, target) => {
   return container.append(e)
 }
 
-export { element, mount }
+export { element, fragment, mount }
