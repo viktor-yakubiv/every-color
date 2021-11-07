@@ -37,6 +37,10 @@
   <section id="edge-cases" class="stack">
     <h2>Some edge cases</h2>
   </section>
+
+  <section id="nested" class="stack">
+    <h2>Nesting</h2>
+  </section>
 </main>
 
 <aside class="stack">
@@ -114,6 +118,15 @@
         [contrast, accent, 'surface', 'and', emphasis, 'content'].join(' '))))
     .flat(2)
 
+  const allAccentSurfaces = contrastList.flatMap(contrast =>
+    accentList.flatMap(accent =>
+      join(accent, contrast, 'surface')))
+
+  const nested = allAccentSurfaces.map(parent => [
+    parent,
+    allAccentSurfaces,
+  ])
+
   const generate = (target, layouts = [switcher, stack, box]) => {
     if (typeof target == 'string') {
       const [layout] = layouts.slice(-1)
@@ -135,6 +148,18 @@
   mount(generate(contentShorthands, [switcher, stack, element]), '#content-shorthands')
   mount(generate(surfaceShorthands), '#surface-shorthands')
   mount(generate(edge), '#edge-cases')
+  mount(
+    switcher(
+      {},
+      nested.map(
+        ([parent, children]) => box(
+          { className: parent },
+          [element({ tag: 'h3' }, [parent]), generate(children)]
+        )
+      )
+    ),
+    '#nested'
+  )
 </script>
 
 <style id="example">
