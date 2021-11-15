@@ -70,18 +70,6 @@
  * See Contrast modifiers as well.
  */
 
-.default {
-  --object-neutral-surface: var(--theme-default-neutral-surface);
-  --object-neutral-outline: var(--theme-default-neutral-outline);
-  --object-neutral-major-content: var(--theme-default-neutral-major-content);
-  --object-neutral-minor-content: var(--theme-default-neutral-minor-content);
-
-  --object-vibrant-surface: var(--theme-default-vibrant-surface);
-  --object-vibrant-outline: var(--theme-default-vibrant-outline);
-  --object-vibrant-major-content: var(--theme-default-vibrant-major-content);
-  --object-vibrant-minor-content: var(--theme-default-vibrant-minor-content);
-}
-
 .primary {
   --object-neutral-surface: var(--theme-primary-neutral-surface);
   --object-neutral-outline: var(--theme-primary-neutral-outline);
@@ -152,12 +140,6 @@
  *
  * Contrast modifiers apply final surface and content colors.
  */
-.neutral {
-  --object-surface: var(--object-neutral-surface);
-  --object-outline: var(--object-neutral-outline);
-  --object-major-content: var(--object-neutral-major-content);
-  --object-minor-content: var(--object-neutral-minor-content);
-}
 
 .vibrant {
   --object-surface: var(--object-vibrant-surface);
@@ -174,10 +156,6 @@
  * well with the surface, or minor (medium) — contrasting with surface to
  * be noticed but do not create noise.
  */
-
-.major {
-  --object-content: var(--object-major-content);
-}
 
 .minor {
   --object-content: var(--object-minor-content);
