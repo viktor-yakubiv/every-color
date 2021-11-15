@@ -4,11 +4,8 @@
  * Applies general background for any surface or content.
  */
 :root {
-  --object-major-content: var(--theme-default-neutral-major-content);
-  --object-minor-content: var(--theme-default-neutral-minor-content);
-
-  background-color: var(--object-background);
-  color: var(--object-major-content);
+  background-color: var(--theme-background);
+  color: var(--theme-default-neutral-major-content);
 }
 
 /**
