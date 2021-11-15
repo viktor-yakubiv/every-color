@@ -4,11 +4,11 @@
  * Applies general background for any surface or content.
  */
 :root {
-  --color-major-content: var(--color-default-neutral-major-content);
-  --color-minor-content: var(--color-default-neutral-minor-content);
+  --object-major-content: var(--theme-default-neutral-major-content);
+  --object-minor-content: var(--theme-default-neutral-minor-content);
 
-  background-color: var(--color-background);
-  color: var(--color-major-content);
+  background-color: var(--object-background);
+  color: var(--object-major-content);
 }
 
 /**
@@ -22,12 +22,12 @@
  */
 
 .content {
-  --color-neutral-major-content: var(--color-default-neutral-major-content);
-  --color-neutral-minor-content: var(--color-default-neutral-minor-content);
-  --color-major-content: var(--color-neutral-major-content);
-  --color-minor-content: var(--color-neutral-minor-content);
-  --color-content: var(--color-major-content);
-  color: var(--color-content);
+  --object-neutral-major-content: var(--theme-default-neutral-major-content);
+  --object-neutral-minor-content: var(--theme-default-neutral-minor-content);
+  --object-major-content: var(--object-neutral-major-content);
+  --object-minor-content: var(--object-neutral-minor-content);
+  --object-content: var(--object-major-content);
+  color: var(--object-content);
 }
 
 
@@ -42,19 +42,19 @@
  */
 
 .surface {
-  --color-neutral-surface: var(--color-default-neutral-surface);
-  --color-vibrant-surface: var(--color-default-vibrant-surface);
-  --color-surface: var(--color-neutral-surface);
-  background-color: var(--color-surface);
+  --object-neutral-surface: var(--theme-default-neutral-surface);
+  --object-vibrant-surface: var(--theme-default-vibrant-surface);
+  --object-surface: var(--object-neutral-surface);
+  background-color: var(--object-surface);
 
-  --color-neutral-major-content: var(--color-default-neutral-major-content);
-  --color-neutral-minor-content: var(--color-default-neutral-minor-content);
-  --color-vibrant-major-content: var(--color-default-vibrant-major-content);
-  --color-vibrant-minor-content: var(--color-default-vibrant-minor-content);
-  --color-major-content: var(--color-neutral-major-content);
-  --color-minor-content: var(--color-neutral-minor-content);
-  --color-content: var(--color-major-content);
-  color: var(--color-content);
+  --object-neutral-major-content: var(--theme-default-neutral-major-content);
+  --object-neutral-minor-content: var(--theme-default-neutral-minor-content);
+  --object-vibrant-major-content: var(--theme-default-vibrant-major-content);
+  --object-vibrant-minor-content: var(--theme-default-vibrant-minor-content);
+  --object-major-content: var(--object-neutral-major-content);
+  --object-minor-content: var(--object-neutral-minor-content);
+  --object-content: var(--object-major-content);
+  color: var(--object-content);
 }
 
 
@@ -71,75 +71,75 @@
  */
 
 .default {
-  --color-neutral-surface: var(--color-default-neutral-surface);
-  --color-neutral-outline: var(--color-default-neutral-outline);
-  --color-neutral-major-content: var(--color-default-neutral-major-content);
-  --color-neutral-minor-content: var(--color-default-neutral-minor-content);
+  --object-neutral-surface: var(--theme-default-neutral-surface);
+  --object-neutral-outline: var(--theme-default-neutral-outline);
+  --object-neutral-major-content: var(--theme-default-neutral-major-content);
+  --object-neutral-minor-content: var(--theme-default-neutral-minor-content);
 
-  --color-vibrant-surface: var(--color-default-vibrant-surface);
-  --color-vibrant-outline: var(--color-default-vibrant-outline);
-  --color-vibrant-major-content: var(--color-default-vibrant-major-content);
-  --color-vibrant-minor-content: var(--color-default-vibrant-minor-content);
+  --object-vibrant-surface: var(--theme-default-vibrant-surface);
+  --object-vibrant-outline: var(--theme-default-vibrant-outline);
+  --object-vibrant-major-content: var(--theme-default-vibrant-major-content);
+  --object-vibrant-minor-content: var(--theme-default-vibrant-minor-content);
 }
 
 .primary {
-  --color-neutral-surface: var(--color-primary-neutral-surface);
-  --color-neutral-outline: var(--color-primary-neutral-outline);
-  --color-neutral-major-content: var(--color-primary-neutral-major-content);
-  --color-neutral-minor-content: var(--color-primary-neutral-minor-content);
+  --object-neutral-surface: var(--theme-primary-neutral-surface);
+  --object-neutral-outline: var(--theme-primary-neutral-outline);
+  --object-neutral-major-content: var(--theme-primary-neutral-major-content);
+  --object-neutral-minor-content: var(--theme-primary-neutral-minor-content);
 
-  --color-vibrant-surface: var(--color-primary-vibrant-surface);
-  --color-vibrant-outline: var(--color-primary-vibrant-outline);
-  --color-vibrant-major-content: var(--color-primary-vibrant-major-content);
-  --color-vibrant-minor-content: var(--color-primary-vibrant-minor-content);
+  --object-vibrant-surface: var(--theme-primary-vibrant-surface);
+  --object-vibrant-outline: var(--theme-primary-vibrant-outline);
+  --object-vibrant-major-content: var(--theme-primary-vibrant-major-content);
+  --object-vibrant-minor-content: var(--theme-primary-vibrant-minor-content);
 }
 
 .info {
-  --color-neutral-surface: var(--color-info-neutral-surface);
-  --color-neutral-outline: var(--color-info-neutral-outline);
-  --color-neutral-major-content: var(--color-info-neutral-major-content);
-  --color-neutral-minor-content: var(--color-info-neutral-minor-content);
+  --object-neutral-surface: var(--theme-info-neutral-surface);
+  --object-neutral-outline: var(--theme-info-neutral-outline);
+  --object-neutral-major-content: var(--theme-info-neutral-major-content);
+  --object-neutral-minor-content: var(--theme-info-neutral-minor-content);
 
-  --color-vibrant-surface: var(--color-info-vibrant-surface);
-  --color-vibrant-outline: var(--color-info-vibrant-outline);
-  --color-vibrant-major-content: var(--color-info-vibrant-major-content);
-  --color-vibrant-minor-content: var(--color-info-vibrant-minor-content);
+  --object-vibrant-surface: var(--theme-info-vibrant-surface);
+  --object-vibrant-outline: var(--theme-info-vibrant-outline);
+  --object-vibrant-major-content: var(--theme-info-vibrant-major-content);
+  --object-vibrant-minor-content: var(--theme-info-vibrant-minor-content);
 }
 
 .positive {
-  --color-neutral-surface: var(--color-positive-neutral-surface);
-  --color-neutral-outline: var(--color-positive-neutral-outline);
-  --color-neutral-major-content: var(--color-positive-neutral-major-content);
-  --color-neutral-minor-content: var(--color-positive-neutral-minor-content);
+  --object-neutral-surface: var(--theme-positive-neutral-surface);
+  --object-neutral-outline: var(--theme-positive-neutral-outline);
+  --object-neutral-major-content: var(--theme-positive-neutral-major-content);
+  --object-neutral-minor-content: var(--theme-positive-neutral-minor-content);
 
-  --color-vibrant-surface: var(--color-positive-vibrant-surface);
-  --color-vibrant-outline: var(--color-positive-vibrant-outline);
-  --color-vibrant-major-content: var(--color-positive-vibrant-major-content);
-  --color-vibrant-minor-content: var(--color-positive-vibrant-minor-content);
+  --object-vibrant-surface: var(--theme-positive-vibrant-surface);
+  --object-vibrant-outline: var(--theme-positive-vibrant-outline);
+  --object-vibrant-major-content: var(--theme-positive-vibrant-major-content);
+  --object-vibrant-minor-content: var(--theme-positive-vibrant-minor-content);
 }
 
 .warning {
-  --color-neutral-surface: var(--color-warning-neutral-surface);
-  --color-neutral-outline: var(--color-warning-neutral-outline);
-  --color-neutral-major-content: var(--color-warning-neutral-major-content);
-  --color-neutral-minor-content: var(--color-warning-neutral-minor-content);
+  --object-neutral-surface: var(--theme-warning-neutral-surface);
+  --object-neutral-outline: var(--theme-warning-neutral-outline);
+  --object-neutral-major-content: var(--theme-warning-neutral-major-content);
+  --object-neutral-minor-content: var(--theme-warning-neutral-minor-content);
 
-  --color-vibrant-surface: var(--color-warning-vibrant-surface);
-  --color-vibrant-outline: var(--color-warning-vibrant-outline);
-  --color-vibrant-major-content: var(--color-warning-vibrant-major-content);
-  --color-vibrant-minor-content: var(--color-warning-vibrant-minor-content);
+  --object-vibrant-surface: var(--theme-warning-vibrant-surface);
+  --object-vibrant-outline: var(--theme-warning-vibrant-outline);
+  --object-vibrant-major-content: var(--theme-warning-vibrant-major-content);
+  --object-vibrant-minor-content: var(--theme-warning-vibrant-minor-content);
 }
 
 .danger {
-  --color-neutral-surface: var(--color-danger-neutral-surface);
-  --color-neutral-outline: var(--color-danger-neutral-outline);
-  --color-neutral-major-content: var(--color-danger-neutral-major-content);
-  --color-neutral-minor-content: var(--color-danger-neutral-minor-content);
+  --object-neutral-surface: var(--theme-danger-neutral-surface);
+  --object-neutral-outline: var(--theme-danger-neutral-outline);
+  --object-neutral-major-content: var(--theme-danger-neutral-major-content);
+  --object-neutral-minor-content: var(--theme-danger-neutral-minor-content);
 
-  --color-vibrant-surface: var(--color-danger-vibrant-surface);
-  --color-vibrant-outline: var(--color-danger-vibrant-outline);
-  --color-vibrant-major-content: var(--color-danger-vibrant-major-content);
-  --color-vibrant-minor-content: var(--color-danger-vibrant-minor-content);
+  --object-vibrant-surface: var(--theme-danger-vibrant-surface);
+  --object-vibrant-outline: var(--theme-danger-vibrant-outline);
+  --object-vibrant-major-content: var(--theme-danger-vibrant-major-content);
+  --object-vibrant-minor-content: var(--theme-danger-vibrant-minor-content);
 }
 
 
@@ -153,17 +153,17 @@
  * Contrast modifiers apply final surface and content colors.
  */
 .neutral {
-  --color-surface: var(--color-neutral-surface);
-  --color-outline: var(--color-neutral-outline);
-  --color-major-content: var(--color-neutral-major-content);
-  --color-minor-content: var(--color-neutral-minor-content);
+  --object-surface: var(--object-neutral-surface);
+  --object-outline: var(--object-neutral-outline);
+  --object-major-content: var(--object-neutral-major-content);
+  --object-minor-content: var(--object-neutral-minor-content);
 }
 
 .vibrant {
-  --color-surface: var(--color-vibrant-surface);
-  --color-outline: var(--color-vibrant-outline);
-  --color-major-content: var(--color-vibrant-major-content);
-  --color-minor-content: var(--color-vibrant-minor-content);
+  --object-surface: var(--object-vibrant-surface);
+  --object-outline: var(--object-vibrant-outline);
+  --object-major-content: var(--object-vibrant-major-content);
+  --object-minor-content: var(--object-vibrant-minor-content);
 }
 
 
@@ -176,11 +176,11 @@
  */
 
 .major {
-  --color-content: var(--color-major-content);
+  --object-content: var(--object-major-content);
 }
 
 .minor {
-  --color-content: var(--color-minor-content);
+  --object-content: var(--object-minor-content);
 }
 
 
@@ -203,22 +203,22 @@
  */
 
 :where(.minor, .major) {
-  --color-neutral-major-content: var(--color-default-neutral-major-content);
-  --color-neutral-minor-content: var(--color-default-neutral-minor-content);
-  --color-major-content: var(--color-neutral-major-content);
-  --color-minor-content: var(--color-neutral-minor-content);
-  color: var(--color-content);
+  --object-neutral-major-content: var(--theme-default-neutral-major-content);
+  --object-neutral-minor-content: var(--theme-default-neutral-minor-content);
+  --object-major-content: var(--object-neutral-major-content);
+  --object-minor-content: var(--object-neutral-minor-content);
+  color: var(--object-content);
 }
 
 :where(.primary, .info, .positive, .warning, .danger) {
-  --color-major-content: var(--color-neutral-major-content);
-  --color-minor-content: var(--color-neutral-minor-content);
-  --color-content: var(--color-major-content);
-  color: var(--color-content);
+  --object-major-content: var(--object-neutral-major-content);
+  --object-minor-content: var(--object-neutral-minor-content);
+  --object-content: var(--object-major-content);
+  color: var(--object-content);
 }
 
 :not(.neutral):where(.surface):where(.primary, .info, .positive, .warning, .danger) {
-  --color-surface: var(--color-vibrant-surface);
-  --color-major-content: var(--color-vibrant-major-content);
-  --color-minor-content: var(--color-vibrant-minor-content);
+  --object-surface: var(--object-vibrant-surface);
+  --object-major-content: var(--object-vibrant-major-content);
+  --object-minor-content: var(--object-vibrant-minor-content);
 }
