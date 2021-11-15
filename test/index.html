@@ -41,6 +41,10 @@
   <section id="nested" class="stack">
     <h2>Nesting</h2>
   </section>
+
+  <section id="alerts" class="stack">
+    <h2>Alert components</h2>
+  </section>
 </main>
 
 <aside class="stack">
@@ -65,7 +69,7 @@
 
 <script type="module" id="spec">
   import { element, mount } from './engine.js'
-  import { box, stack, switcher } from './layout.js'
+  import { box, cluster, stack, switcher } from './layout.js'
   import { join } from './class-names.js'
 
   const semanticAccentList = ['info', 'positive', 'warning', 'danger']
@@ -160,6 +164,43 @@
     ),
     '#nested'
   )
+
+  const button = ({ variant, label }) => box(
+    {
+      className: variant === 'primary'
+        ? 'interactive primary vibrant surface [that is] button'
+        : 'interactive outlined default neutral surface [that is] button',
+    },
+    [label]
+  )
+
+  const alert = ({
+    accent = 'default',
+    contrast = 'neutral',
+    title = '404 Not Found',
+    message = [
+      element({ tag: 'p' }, ['Page could not be found.']),
+      element({ tag: 'p', className: 'minor content' }, [window.location.href]),
+    ],
+    actions = ['OK', 'Cancel'],
+  }, children = []) => box(
+    {
+      className: join(accent, contrast, 'surface'),
+    },
+    [
+      element({ tag: 'h4' }, [title]),
+      ...(Array.isArray(message) ? message : [message]),
+      ...children,
+      cluster({}, [
+        button({ variant: 'primary', label: actions[0] }),
+        button({ variant: 'secondary', label: actions[1] }),
+      ]),
+    ]
+  )
+
+  contrastList
+    .flatMap(contrast => accentList.map(accent => alert({ contrast, accent })))
+    .forEach(e => mount(e, '#alerts'))
 </script>
 
 <style id="example">
@@ -214,12 +255,26 @@
     flex-basis: calc((30rem - 100%) * 999);
   }
 
+  .cluster {
+    --row-gap: .5rem;
+    --col-gap: .5rem;
+    display: flex;
+    flex-direction: row;
+    gap: var(--row-gap) var(--col-gap);
+  }
+
   .box {
     --inset-inline: var(--size-400);
     --inset-block: var(--size-400);
+    display: block;
     padding-inline: calc(max(1px, var(--inset-inline)) - 1px);
     padding-block: calc(max(1px, var(--inset-block)) - 1px);
     border: 1px solid transparent;
     border-radius: .25rem;
+  }
+
+  .button {
+    --inset-inline: 1rem;
+    --inset-block: .5rem;
   }
 </style>

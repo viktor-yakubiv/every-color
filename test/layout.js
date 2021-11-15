@@ -9,6 +9,15 @@ const box = ({ className, ...props } = {}, children) => element(
   children
 )
 
+const cluster = ({ className, ...props } = {}, children) => element(
+  {
+    ...props,
+    className: combine('a cluster', className),
+  },
+  children
+)
+
+
 const stack = ({ className, ...props } = {}, children) => element(
   {
     ...props,
@@ -25,4 +34,4 @@ const switcher = ({ className, ...props } = {}, children) => element(
   children
 )
 
-export { box, stack, switcher }
+export { box, cluster, stack, switcher }
