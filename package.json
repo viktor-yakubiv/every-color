@@ -14,5 +14,19 @@
   "main": "color.css",
   "files": [
     "*.css"
-  ]
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.4",
+    "babel-jest": "^27.3.1",
+    "change-case": "^4.1.2",
+    "http-server": "^14.0.0",
+    "jest": "^27.3.1",
+    "jest-matcher-utils": "^27.4.2",
+    "jest-puppeteer": "^6.0.0",
+    "puppeteer": "^11.0.0"
+  },
+  "scripts": {
+    "test": "jest"
+  }
 }

@@ -1,0 +1,82 @@
+/*!
+ * This file is only for prettifying test samples, so they are more
+ * appealing on previews.
+ *
+ * This MUST NOT apply any color (text, background, border outline etc.)
+ */
+
+/**
+ * Setup
+ */
+
+:root {
+  --size-400: 1rem;
+  --size-500: 1.25rem;
+  --size-600: 1.5rem;
+  --size-700: 2rem;
+
+  --space-100: .25rem;
+  --space-200: .5rem;
+  --space-400: 1rem;
+  --space-500: 1.25rem;
+  --space-600: 1.5rem;
+}
+
+.stack {
+  --spacer: var(--space-400);
+}
+
+.stack > * {
+  margin-block: 0;
+}
+
+.stack > * + * {
+  margin-block-start: var(--spacer);
+}
+
+.switcher {
+  --row-gap: var(--space-400);
+  --col-gap: var(--space-600);
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--row-gap) var(--col-gap);
+}
+
+.switcher > * {
+  flex-grow: 1;
+  flex-basis: calc((30rem - 100%) * 999);
+}
+
+.cluster {
+  --row-gap: var(--space-100);
+  --col-gap: var(--space-100);
+  display: flex;
+  flex-direction: row;
+  gap: var(--row-gap) var(--col-gap);
+}
+
+.box {
+  --inset-inline: var(--size-400);
+  --inset-block: var(--size-400);
+  display: block;
+  padding-inline: calc(max(1px, var(--inset-inline)) - 1px);
+  padding-block: calc(max(1px, var(--inset-block)) - 1px);
+  border: 1px solid transparent;
+  border-radius: .25rem;
+}
+
+/**
+ * Globals
+ */
+
+:root {
+  font-family: system-ui;
+  line-height: 1.5;
+  background-color: var(--theme-background);
+}
+
+body {
+  margin: 0;
+  padding: var(--size-400);
+}
