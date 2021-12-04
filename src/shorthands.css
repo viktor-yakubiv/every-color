@@ -3,10 +3,9 @@
  * writing .content class everywhere
  */
 
-.neutral,
-.primary,
-.positive {
-  color: var(--content);
+:where(.neutral, .primary, .positive) {
+  --content: var(--major-content);
+  color: var(--content, var(--major-content));
 }
 
 /**
@@ -16,5 +15,5 @@
 
 .major,
 .minor {
-  color: var(--content);
+  color: var(--content, var(--major-content));
 }

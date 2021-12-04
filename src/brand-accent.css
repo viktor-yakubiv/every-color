@@ -1,12 +1,15 @@
 :root {
-  --major-content: var(--theme-default-neutral-major-content);
-  --minor-content: var(--theme-default-neutral-minor-content);
+  --major-content:
+    var(--theme-major-content,
+    var(--theme-neutral-major-content));
+  --minor-content:
+    var(--theme-minor-content,
+    var(--theme-neutral-minor-content));
   --content: var(--major-content);
-  color: var(--content, var(--major-content));
+  color: var(--content);
 }
 
 .primary {
-  --major-content: var(--theme-primary-neutral-major-content);
-  --minor-content: var(--theme-primary-neutral-minor-content);
-  --content: var(--major-content);
+  --major-content: var(--theme-primary-major-content);
+  --minor-content: var(--theme-primary-minor-content);
 }
