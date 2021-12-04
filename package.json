@@ -24,9 +24,12 @@
     "jest": "^27.3.1",
     "jest-matcher-utils": "^27.4.2",
     "jest-puppeteer": "^6.0.0",
-    "puppeteer": "^11.0.0"
+    "puppeteer": "^11.0.0",
+    "sass": "^1.44.0"
   },
   "scripts": {
+    "build": "sass --no-source-map src:dist",
+    "pretest": "npm run build",
     "test": "jest"
   }
 }
