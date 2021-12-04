@@ -8,7 +8,7 @@ const cases = accents.flatMap(a => emphasises.map(e => [a, e]))
 test('content itself does not apply anything', async () => {
   await injectPage({
     body: '<p class="content">bare content</p>',
-    screenshot: 'bare-content-theme',
+    screenshot: 'bare-content',
   })
   await expect(styleOf('.content')).toMatchStyleOf(':root', ['color'])
 
@@ -27,7 +27,7 @@ test('content with accent and emphasis applies both', async () => {
     <p class="${accent} ${emphasis} content">
       ${accent} ${emphasis} content
     </p>
-  `).join('\n'))
+  `).join('\n'), { screenshot: 'content-basics' })
 
   for (const [accent, emphasis] of cases) {
     await expect(styleOf(`.${accent}.${emphasis}.content`)).toMatchStyle({
@@ -39,7 +39,7 @@ test('content with accent and emphasis applies both', async () => {
 test('content with accent applies major emphasis', async () => {
   await injectPage(accents.map(accent => `
     <p class="${accent} content">${accent} content</p>
-  `).join('\n'))
+  `).join('\n'), { screenshot: 'content-accent' })
 
   for (const accent of accents) {
     await expect(styleOf(`.${accent}`)).toMatchStyle({
@@ -51,7 +51,7 @@ test('content with accent applies major emphasis', async () => {
 test('content with emphasis applies no accent', async () => {
   await injectPage(emphasises.map(emphasis => `
     <p class="${emphasis} content">${emphasis} content</p>
-  `).join('\n'))
+  `).join('\n'), { screenshot: 'content-emphasis' })
 
   for (const emphasis of emphasises) {
     await expect(styleOf(`.${emphasis}.content`)).toMatchStyle({
@@ -63,7 +63,7 @@ test('content with emphasis applies no accent', async () => {
 test('bare emphasis is a shorthand for content', async () => {
   await injectPage(emphasises.map(emphasis => `
     <p class="${emphasis}">${emphasis}</p>
-  `).join('\n'))
+  `, { screenshot: 'bare-emphasis' }).join('\n'))
 
   for (const emphasis of emphasises) {
     await expect(styleOf(`.${emphasis}`)).toMatchStyle({
@@ -75,7 +75,7 @@ test('bare emphasis is a shorthand for content', async () => {
 test('bare accent is a shorthand for content', async () => {
   await injectPage(accents.map(accent => `
     <p class="${accent}">${accent}</p>
-  `).join('\n'))
+  `).join('\n'), { screenshot: 'bare-accent' })
 
   for (const accent of accents) {
     await expect(styleOf(`.${accent}`)).toMatchStyle({
@@ -101,8 +101,7 @@ test('nested emphasis changes the inherited one', async () => {
         `).join('\n')}
       </div>
     `).join('\n')}
-  `)
-  await takeScreenshot('nested-emphasis')
+  `, { screenshot: 'nested-emphasis' })
 
   for (const [accent, parentEmphasis] of cases) {
     for (const childEmphasis of emphasises) {
@@ -136,8 +135,7 @@ test('nested accent changes the inherited one', async () => {
         `).join('\n')}
       </div>
     `).join('\n')}
-  `)
-  await takeScreenshot('nested-accent')
+  `, { 'screenshot': 'nested-accent' })
 
   for (const [parentAccent, emphasis] of cases) {
     for (const childAccent of accents) {
