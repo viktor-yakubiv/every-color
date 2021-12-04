@@ -1,0 +1,12 @@
+:root {
+  --major-content: var(--theme-default-neutral-major-content);
+  --minor-content: var(--theme-default-neutral-minor-content);
+  --content: var(--major-content);
+  color: var(--content, var(--major-content));
+}
+
+.primary {
+  --major-content: var(--theme-primary-neutral-major-content);
+  --minor-content: var(--theme-primary-neutral-minor-content);
+  --content: var(--major-content);
+}

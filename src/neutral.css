@@ -1,0 +1,5 @@
+.neutral {
+  --major-content: var(--theme-default-neutral-major-content);
+  --minor-content: var(--theme-default-neutral-minor-content);
+  --content: var(--major-content);
+}

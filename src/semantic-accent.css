@@ -1,0 +1,5 @@
+.positive {
+  --major-content: var(--theme-positive-major-content);
+  --minor-content: var(--theme-positive-minor-content);
+  --content: var(--major-content);
+}

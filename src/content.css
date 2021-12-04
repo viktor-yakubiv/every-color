@@ -1,0 +1,15 @@
+/**
+ * Content
+ *
+ * Text and icons.
+ *
+ * It could be major with high emphasis or minor — with low emphasis
+ * respectively. Also, it respects color accents if and only if used
+ * on the neutral surface or background.
+ *
+ * Bare content does not mean anything and inherits context.
+ */
+
+.content {
+  /* Nothing to do. It's a placeholder */
+}

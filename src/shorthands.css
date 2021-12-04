@@ -1,0 +1,20 @@
+/**
+ * Bare accent changes the text color by default, so there is no need in
+ * writing .content class everywhere
+ */
+
+.neutral,
+.primary,
+.positive {
+  color: var(--content);
+}
+
+/**
+ * Bare emphasis changes the text color by default, so there is no need in
+ * writing .content class everywhere
+ */
+
+.major,
+.minor {
+  color: var(--content);
+}

@@ -10,9 +10,9 @@ const HEAD = `
 
 <link rel="stylesheet" href="jest-env/layout.css">
 
-<link rel="stylesheet" href="palette.css">
-<link rel="stylesheet" href="theme.css">
-<link rel="stylesheet" href="color.css">
+<link rel="stylesheet" href="src/palette.css">
+<link rel="stylesheet" href="src/theme.css">
+<link rel="stylesheet" href="src/index.css">
 `
 
 const injectPage = (contentOrOptions = '', options = {}) => {

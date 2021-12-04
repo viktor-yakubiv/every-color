@@ -1,0 +1,15 @@
+/**
+ * Accent
+ *
+ * Applies a color schema to either content or surface.
+ *
+ * An accent could be used on a neutral or a vibrant surface in regards to
+ * the current theme. Color accents apply both and rely on a proper resolution
+ * by the the surface itself.
+ *
+ * See Contrast modifiers as well.
+ */
+
+@import url('neutral.css');
+@import url('brand-accent.css');
+@import url('semantic-accent.css');

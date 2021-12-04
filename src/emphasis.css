@@ -1,0 +1,16 @@
+/**
+ * Emphasis
+ *
+ * Applies emphasis level to text and icons. Could be major — high, contrasting
+ * well with the surface, or minor (medium) — contrasting with surface to
+ * be noticed but do not create noise.
+ */
+
+
+.major {
+  --content: var(--major-content);
+}
+
+.minor {
+  --content: var(--minor-content);
+}
