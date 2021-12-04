@@ -43,7 +43,7 @@ test('content with accent applies major emphasis', async () => {
 
   for (const accent of accents) {
     await expect(styleOf(`.${accent}`)).toMatchStyle({
-      color: `var(--theme-${accent}-meutral-major-content)`,
+      color: `var(--theme-${accent}-neutral-major-content)`,
     })
   }
 })
@@ -55,7 +55,7 @@ test('content with emphasis applies no accent', async () => {
 
   for (const emphasis of emphasises) {
     await expect(styleOf(`.${emphasis}.content`)).toMatchStyle({
-      color: `var(--theme-default-meutral-${emphasis}-content)`,
+      color: `var(--theme-default-neutral-${emphasis}-content)`,
     })
   }
 })
@@ -67,7 +67,7 @@ test('bare emphasis is a shorthand for content', async () => {
 
   for (const emphasis of emphasises) {
     await expect(styleOf(`.${emphasis}`)).toMatchStyle({
-      color: `var(--theme-default-meutral-${emphasis}-content)`,
+      color: `var(--theme-default-neutral-${emphasis}-content)`,
     })
   }
 })
@@ -79,7 +79,7 @@ test('bare accent is a shorthand for content', async () => {
 
   for (const accent of accents) {
     await expect(styleOf(`.${accent}`)).toMatchStyle({
-      color: `var(--theme-${accent}-meutral-major-content)`,
+      color: `var(--theme-${accent}-neutral-major-content)`,
     })
   }
 })
