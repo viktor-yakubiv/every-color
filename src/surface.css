@@ -1,0 +1,18 @@
+/**
+ * Surface
+ *
+ * Applies background for itself along with the content colors
+ * that could be used on the current surface.
+ *
+ * Bare surface expects to be default and neutral in regard to the current
+ * theme. Can be configured with accent and/or contrast classes.
+ */
+
+.surface {
+  background-color: var(--surface, var(--neutral-surface));
+
+  --major-content: var(--theme-neutral-major-content);
+  --minor-content: var(--theme-neutral-minor-content);
+  --content: var(--major-content);
+  color: var(--content);
+}
