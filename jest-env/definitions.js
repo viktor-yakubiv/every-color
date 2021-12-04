@@ -1,5 +1,4 @@
-// export const semanticAccents = ['info', 'positive', 'warning', 'danger']
-export const semanticAccents = ['positive']
+export const semanticAccents = ['info', 'positive', 'warning', 'danger']
 export const brandAccents = ['primary']
 export const accents = ['neutral', ...brandAccents, ...semanticAccents]
 export const contrasts = ['neutral', 'vibrant']

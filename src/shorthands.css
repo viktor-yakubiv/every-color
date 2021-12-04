@@ -3,7 +3,7 @@
  * writing .content class everywhere
  */
 
-:where(.neutral, .primary, .positive) {
+:where(.neutral, .primary, .info, .positive, .warning, .danger) {
   --content: var(--major-content);
   color: var(--content, var(--major-content));
 }
