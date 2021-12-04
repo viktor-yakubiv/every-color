@@ -1,4 +1,5 @@
 export * as classNames from './class-names'
+export * as css from './css'
 export * as definitions from './definitions'
 export * as matchers from './matchers'
 

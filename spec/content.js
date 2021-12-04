@@ -31,7 +31,7 @@ test('content with accent and emphasis applies both', async () => {
 
   for (const [accent, emphasis] of cases) {
     await expect(styleOf(`.${accent}.${emphasis}.content`)).toMatchStyle({
-      color: `var(--theme-${accent}-neutral-${emphasis}-content)`
+      color: useVar({ accent, emphasis })
     })
   }
 })
@@ -43,7 +43,7 @@ test('content with accent applies major emphasis', async () => {
 
   for (const accent of accents) {
     await expect(styleOf(`.${accent}`)).toMatchStyle({
-      color: `var(--theme-${accent}-neutral-major-content)`,
+      color: useVar({ accent, emphasis: 'major' }),
     })
   }
 })
@@ -55,7 +55,7 @@ test('content with emphasis applies no accent', async () => {
 
   for (const emphasis of emphasises) {
     await expect(styleOf(`.${emphasis}.content`)).toMatchStyle({
-      color: `var(--theme-default-neutral-${emphasis}-content)`,
+      color: useVar({ emphasis }),
     })
   }
 })
@@ -67,7 +67,7 @@ test('bare emphasis is a shorthand for content', async () => {
 
   for (const emphasis of emphasises) {
     await expect(styleOf(`.${emphasis}`)).toMatchStyle({
-      color: `var(--theme-default-neutral-${emphasis}-content)`,
+      color: useVar({ emphasis }),
     })
   }
 })
@@ -79,7 +79,7 @@ test('bare accent is a shorthand for content', async () => {
 
   for (const accent of accents) {
     await expect(styleOf(`.${accent}`)).toMatchStyle({
-      color: `var(--theme-${accent}-neutral-major-content)`,
+      color: useVar({ accent, emphasis: 'major' }),
     })
   }
 })
@@ -108,11 +108,11 @@ test('nested emphasis changes the inherited one', async () => {
       const container = hash(accent, parentEmphasis, childEmphasis)
 
       await expect(styleOf(container)).toMatchStyle({
-        color: `var(--theme-${accent}-neutral-${parentEmphasis}-content)`
+        color: useVar({ accent, emphasis: parentEmphasis }),
       })
 
       await expect(styleOf(`${container} span`)).toMatchStyle({
-        color: `var(--theme-${accent}-neutral-${childEmphasis}-content)`
+        color: useVar({ accent, emphasis: childEmphasis }),
       })
     }
   }
@@ -142,11 +142,11 @@ test('nested accent changes the inherited one', async () => {
       const container = hash(parentAccent, childAccent, emphasis)
 
       await expect(styleOf(container)).toMatchStyle({
-        color: `var(--theme-${parentAccent}-neutral-${emphasis}-content)`
+        color: useVar({ accent: parentAccent, emphasis }),
       })
 
       await expect(styleOf(`${container} span`)).toMatchStyle({
-        color: `var(--theme-${childAccent}-neutral-${emphasis}-content)`
+        color: useVar({ accent: childAccent, emphasis }),
       })
     }
   }

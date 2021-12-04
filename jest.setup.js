@@ -1,6 +1,7 @@
 import { paramCase } from 'change-case'
 import {
   classNames,
+  css,
   definitions,
   matchers,
   injectPage,
@@ -40,6 +41,8 @@ const injectPageWithScreenshot = async (contentOrOptions, options) => {
 Object.assign(global, {
   ...definitions,
   classNames,
+  css,
+  useVar: css.useVar,
   styleOf,
   injectPage: injectPageWithScreenshot,
   takeScreenshot: screenshotIfDebug,
