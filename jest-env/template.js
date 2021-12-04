@@ -15,14 +15,22 @@ const HEAD = `
 <link rel="stylesheet" href="color.css">
 `
 
-const injectPage = (content = '', {
-  title = `🧪 ${expect.getState().currentTestName}`,
-  page = global.page,
-} = {}) =>
-  page.setContent([
+const injectPage = (contentOrOptions = '', options = {}) => {
+  const resolvedOptions = typeof contentOrOptions == 'string'
+    ? { body: contentOrOptions, ...options }
+    : { ...contentOrOptions, ...options }
+
+  const {
+    title = `🧪 ${expect.getState().currentTestName}`,
+    body = '',
+    page = global.page,
+  } = resolvedOptions
+
+  return page.setContent([
     HEAD,
     title ? `<h1>${title}</h1>` : '',
-    content,
+    body,
   ].join('\n'))
+}
 
 export default injectPage

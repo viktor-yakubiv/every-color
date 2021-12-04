@@ -4,6 +4,10 @@ import path from 'path'
 const takeScreenshot = async (name = expect.getState().currentTestName, {
   dir = `${path.join(__dirname, '..')}/screenshots`
 } = {}) => {
+  if (name == null) {
+    return
+  }
+
   await fs.mkdir(dir, { recursive: true })
   await page.screenshot({
     path: `${dir}/${name}.png`,

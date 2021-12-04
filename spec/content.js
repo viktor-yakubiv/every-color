@@ -6,13 +6,19 @@ const hash = (...parts) => `#${id(...parts)}`
 const cases = accents.flatMap(a => emphasises.map(e => [a, e]))
 
 test('content itself does not apply anything', async () => {
-  await injectPage('<p class="content">bare content</p>')
+  await injectPage({
+    body: '<p class="content">bare content</p>',
+    screenshot: 'bare-content-theme',
+  })
   await expect(styleOf('.content')).toMatchStyleOf(':root', ['color'])
 
-  await injectPage(`
-    <style>:root { color: indigo !important }</style>
-    <p class="content">bare content</p>
-  `)
+  await injectPage({
+    body: `
+      <style>:root { color: indigo !important }</style>
+      <p class="content">bare content</p>
+    `,
+    screenshot: 'bare-content-modified',
+  })
   await expect(styleOf('.content')).toMatchStyle({ color: 'indigo' })
 })
 

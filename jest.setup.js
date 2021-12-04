@@ -1,3 +1,4 @@
+import { paramCase } from 'change-case'
 import {
   classNames,
   definitions,
@@ -22,11 +23,25 @@ const screenshotIfDebug = (...args) => {
   return takeScreenshot(...args)
 }
 
+const injectPageWithScreenshot = async (contentOrOptions, options) => {
+  const resolvedOptions = typeof contentOrOptions == 'string'
+    ? { body: contentOrOptions, ...options }
+    : { ...contentOrOptions, ...options }
+
+  const {
+    screenshot: fileName = paramCase(expect.getState().currentTestName),
+    ...passOptions
+  } = resolvedOptions
+
+  await injectPage(passOptions)
+  await screenshotIfDebug(fileName)
+}
+
 Object.assign(global, {
   ...definitions,
   classNames,
-  injectPage,
   styleOf,
+  injectPage: injectPageWithScreenshot,
   takeScreenshot: screenshotIfDebug,
 })
 
