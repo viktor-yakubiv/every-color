@@ -29,7 +29,9 @@ const injectPage = (contentOrOptions = '', options = {}) => {
   return page.setContent([
     HEAD,
     title ? `<h1>${title}</h1>` : '',
+    '<main class="stack">',
     body,
+    '</main>',
   ].join('\n'))
 }
 
