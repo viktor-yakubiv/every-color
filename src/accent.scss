@@ -10,6 +10,12 @@
  * See Contrast modifiers as well.
  */
 
+@use 'sass:list';
+
+$brand-accents: primary;
+$semantic-accents: info, positive, warning, danger;
+$all-accents: list.join(neutral, list.join($brand-accents, $semantic-accents));
+
 :root {
   --major-content:
     var(--theme-major-content,
@@ -21,21 +27,7 @@
   color: var(--content);
 }
 
-.neutral {
-  --surface: var(--theme-neutral-background);
-  --major-content: var(--theme-neutral-major-content);
-  --minor-content: var(--theme-neutral-minor-content);
-}
-
-@each $accent in primary {
-  .#{$accent} {
-    --surface: var(--theme-#{$accent}-background);
-    --major-content: var(--theme-#{$accent}-major-content);
-    --minor-content: var(--theme-#{$accent}-minor-content);
-  }
-}
-
-@each $accent in info, positive, warning, danger {
+@each $accent in $all-accents {
   .#{$accent} {
     --surface: var(--theme-#{$accent}-background);
     --major-content: var(--theme-#{$accent}-major-content);
