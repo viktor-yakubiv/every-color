@@ -4,13 +4,16 @@
  * Applies emphasis level to text and icons. Could be major — high, contrasting
  * well with the surface, or minor (medium) — contrasting with surface to
  * be noticed but do not create noise.
+ *
+ * If appears on semantic surface, always respects it's color even if combined
+ * with own accent.
  */
 
 
 .major {
-  --content: var(--major-content);
+  --content: var(--context-major-content, var(--major-content));
 }
 
 .minor {
-  --content: var(--minor-content);
+  --content: var(--context-minor-content, var(--minor-content));
 }

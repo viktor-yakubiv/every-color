@@ -30,7 +30,19 @@ $all-accents: list.join(neutral, list.join($brand-accents, $semantic-accents));
 @each $accent in $all-accents {
   .#{$accent} {
     --surface: var(--theme-#{$accent}-background);
-    --major-content: var(--theme-#{$accent}-major-content);
-    --minor-content: var(--theme-#{$accent}-minor-content);
+    --major-content:
+      var(--context-major-content,
+      var(--theme-#{$accent}-major-content));
+    --minor-content:
+      var(--context-minor-content,
+      var(--theme-#{$accent}-minor-content));
+  }
+}
+
+@each $accent in $semantic-accents {
+  .#{$accent}.surface > * {
+    --context-surface: transparent;
+    --context-major-content: var(--theme-#{$accent}-major-content);
+    --context-minor-content: var(--theme-#{$accent}-minor-content);
   }
 }

@@ -9,7 +9,7 @@
  */
 
 .surface {
-  background-color: var(--surface, var(--neutral-surface));
+  background-color: var(--context-surface, var(--surface, var(--neutral-surface)));
 
   --major-content: var(--theme-neutral-major-content);
   --minor-content: var(--theme-neutral-minor-content);
