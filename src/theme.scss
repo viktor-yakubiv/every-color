@@ -1,0 +1,49 @@
+/*!
+ * Theme Setting
+ *
+ * It's assumed that the theme is light.
+ *
+ * Naming convention:
+ *
+ * 0. scope
+ *
+ *    - theme — basically, global
+ *    - object — surface or content
+ *
+ * 1. accent
+ *
+ *    - neutral or ∅ (nothing)
+ *    - primary
+ *    - positive
+ *    - informational, info
+ *    - warning
+ *    - danger
+ */
+@use 'sass:color';
+@use 'sass:string';
+@use 'palette';
+
+@function title-case($str) {
+  $first-letter: string.slice($str, 0, 1);
+  $rest: string.slice($str, 2);
+  @return #{string.to-upper-case($first-letter)}#{$rest};
+}
+
+:root {
+  /* Globals */
+  --theme-background: #{palette.get('neutral', '100')};
+  --theme-major-content: #{color.change(palette.get('neutral', '1000'), $alpha: .87)};
+  --theme-minor-content: #{color.change(palette.get('neutral', '1000'), $alpha: .6)};
+
+  /* Neutral */
+  --theme-neutral-background: #{palette.get('neutral', '0')};
+  --theme-neutral-major-content: var(--theme-major-content);
+  --theme-neutral-minor-content: var(--theme-minor-content);
+
+  @each $accent in primary, info, positive, warning, danger {
+    /* #{title-case($accent)} */
+    --theme-#{$accent}-background: #{palette.get($accent, '100')};
+    --theme-#{$accent}-major-content: #{palette.get($accent)};
+    --theme-#{$accent}-minor-content: #{color.change(palette.get($accent), $alpha: .6)};
+  }
+}
