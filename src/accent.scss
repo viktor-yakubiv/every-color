@@ -40,7 +40,7 @@ $all-accents: list.join(neutral, list.join($brand-accents, $semantic-accents));
 }
 
 @each $accent in $semantic-accents {
-  .#{$accent}.surface > * {
+  .#{$accent} > * {
     --context-surface: transparent;
     --context-major-content: var(--theme-#{$accent}-major-content);
     --context-minor-content: var(--theme-#{$accent}-minor-content);

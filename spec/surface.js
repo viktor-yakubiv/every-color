@@ -51,7 +51,8 @@ test('surface with accent applies color to the content inside', async () => {
   }
 })
 
-test('nested accent works only inside of neutral surfaces', async () => {
+// Mixing stuff up on brand surface is completely user's responsibility
+test.skip('nested accent works only inside of neutral surfaces', async () => {
   await injectPage(accents.map(parentAccent => renderSurface({
     accent: parentAccent,
   }, `

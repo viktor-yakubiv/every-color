@@ -11,8 +11,11 @@
 .surface {
   background-color: var(--context-surface, var(--surface, var(--neutral-surface)));
 
-  --major-content: var(--theme-neutral-major-content);
-  --minor-content: var(--theme-neutral-minor-content);
   --content: var(--major-content);
   color: var(--content);
+}
+
+:where(.surface) {
+  --major-content: var(--theme-neutral-major-content);
+  --minor-content: var(--theme-neutral-minor-content);
 }
