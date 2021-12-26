@@ -45,11 +45,19 @@
   --theme-neutral-major-content: var(--theme-major-content);
   --theme-neutral-minor-content: var(--theme-minor-content);
 
+  --theme-neutral-vibrant-background: #{c('neutral', '900')};
+  --theme-neutral-vibrant-major-content: #{c('neutral', '0')};
+  --theme-neutral-vibrant-minor-content: #{c('neutral', '0')};
+
   @each $accent in primary, info, positive, warning, danger {
     /* #{title-case($accent)} */
     --theme-#{$accent}-background: #{c($accent, $alpha: .15)};
     --theme-#{$accent}-major-content: #{c($accent, '600')};
     --theme-#{$accent}-minor-content: #{c($accent, '600', $alpha: .6)};
+
+    --theme-#{$accent}-vibrant-background: #{c($accent)};
+    --theme-#{$accent}-vibrant-major-content: #{c('neutral', '0')};
+    --theme-#{$accent}-vibrant-minor-content: #{c('neutral', '0', $alpha: .6)};
   }
 }
 
@@ -60,6 +68,7 @@
 
   /* Neutral */
   --theme-neutral-background: #{c('neutral', '0', $alpha: .025)};
+  --theme-neutral-background: #{c('neutral', '200')};
 
   @each $accent in primary, info, positive, warning, danger {
     /* #{title-case($accent)} */

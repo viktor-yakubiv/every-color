@@ -16,5 +16,6 @@
 :where(.surface) {
   @each $emphasis in $emphasises {
     --#{$emphasis}-content: var(--theme-neutral-#{$emphasis}-content);
+    --vibrant-#{$emphasis}-content: var(--theme-neutral-vibrant-#{$emphasis}-content);
   }
 }
