@@ -15,7 +15,7 @@ const HEAD = `
 <link rel="stylesheet" href="dist/index.css">
 `
 
-const injectPage = (contentOrOptions = '', options = {}) => {
+const injectPage = async (contentOrOptions = '', options = {}) => {
   const resolvedOptions = typeof contentOrOptions == 'string'
     ? { body: contentOrOptions, ...options }
     : { ...contentOrOptions, ...options }
@@ -24,15 +24,22 @@ const injectPage = (contentOrOptions = '', options = {}) => {
     title = `🧪 ${expect.getState().currentTestName}`,
     body = '',
     page = global.page,
+    media = {},
   } = resolvedOptions
 
-  return page.setContent([
+  const injectionResult = await page.setContent([
     HEAD,
     title ? `<h1>${title}</h1>` : '',
     '<main class="stack">',
     body,
     '</main>',
   ].join('\n'))
+
+  const mediaFeatures = Object.entries(media)
+    .map(([name, value]) => ({ name, value }))
+  await page.emulateMediaFeatures(mediaFeatures)
+
+  return injectionResult
 }
 
 export default injectPage
