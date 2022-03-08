@@ -1,4 +1,4 @@
-/**
+/*!
  * Emphasis
  *
  * Applies emphasis level to text and icons. Could be major — high, contrasting
@@ -8,12 +8,10 @@
  * If appears on semantic surface, always respects it's color even if combined
  * with own accent.
  */
+@use 'mixins' as *;
 
-
-.major {
-  --content: var(--context-major-content, var(--major-content));
-}
-
-.minor {
-  --content: var(--context-minor-content, var(--minor-content));
+@each $emphasis in $emphasises {
+  .#{$emphasis} {
+    @include emphasis($emphasis);
+  }
 }

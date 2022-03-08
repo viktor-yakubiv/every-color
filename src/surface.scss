@@ -7,15 +7,14 @@
  * Bare surface expects to be default and neutral in regard to the current
  * theme. Can be configured with accent and/or contrast classes.
  */
+@use 'mixins' as *;
 
 .surface {
-  background-color: var(--context-surface, var(--surface, var(--neutral-surface)));
-
-  --content: var(--major-content);
-  color: var(--content);
+  @include surface;
 }
 
 :where(.surface) {
-  --major-content: var(--theme-neutral-major-content);
-  --minor-content: var(--theme-neutral-minor-content);
+  @each $emphasis in $emphasises {
+    --#{$emphasis}-content: var(--theme-neutral-#{$emphasis}-content);
+  }
 }

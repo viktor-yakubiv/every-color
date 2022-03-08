@@ -1,11 +1,13 @@
+@use 'mixins' as *;
+
 /**
  * Bare accent changes the text color by default, so there is no need in
  * writing .content class everywhere
  */
 
 :where(.neutral, .primary, .info, .positive, .warning, .danger) {
-  --content: var(--context-major-content, var(--major-content));
-  color: var(--content);
+  @include emphasis;
+  @include content;
 }
 
 /**
@@ -15,5 +17,5 @@
 
 .major,
 .minor {
-  color: var(--content, var(--context-major-content, var(--major-content)));
+  @include content;
 }

@@ -1,4 +1,4 @@
-/**
+/*!
  * Content
  *
  * Text and icons.
@@ -9,7 +9,8 @@
  *
  * Bare content does not mean anything and inherits context.
  */
+@use 'mixins' as *;
 
 .content {
-  /* Nothing to do. It's a placeholder */
+  @include content;
 }
