@@ -51,9 +51,13 @@
 
   @each $accent in primary, info, positive, warning, danger {
     /* #{title-case($accent)} */
-    --theme-#{$accent}-background: #{c($accent, $alpha: .15)};
-    --theme-#{$accent}-major-content: #{c($accent, '600')};
-    --theme-#{$accent}-minor-content: #{c($accent, '600', $alpha: .6)};
+    --theme-#{$accent}-background: var(--theme-#{$accent}-soft-background);
+    --theme-#{$accent}-major-content: var(--theme-#{$accent}-soft-major-content);
+    --theme-#{$accent}-minor-content: var(--theme-#{$accent}-soft-minor-content);
+
+    --theme-#{$accent}-soft-background: #{c($accent, $alpha: .15)};
+    --theme-#{$accent}-soft-major-content: #{c($accent, '600')};
+    --theme-#{$accent}-soft-minor-content: #{c($accent, '600', $alpha: .6)};
 
     --theme-#{$accent}-vibrant-background: #{c($accent)};
     --theme-#{$accent}-vibrant-major-content: #{c('neutral', '0')};

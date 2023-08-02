@@ -1,0 +1,40 @@
+@use 'sass:list';
+
+$brand-accents: primary;
+$semantic-accents: info, positive, warning, danger;
+$all-accents: list.join(neutral, list.join($brand-accents, $semantic-accents));
+
+@each $accent in $all-accents {
+  .#{$accent}:where(.vivid) {
+    --soft-surface: var(--theme-#{$accent}-soft-background);
+    --soft-major-content: var(--theme-#{$accent}-soft-major-content);
+    --soft-minor-content: var(--theme-#{$accent}-soft-minor-content);
+
+    --vivid-surface: var(--theme-#{$accent}-vivid-background);
+    --vivid-major-content: var(--theme-#{$accent}-vivid-major-content);
+    --vivid-minor-content: var(--theme-#{$accent}-vivid-minor-content);
+  }
+}
+
+.vivid {
+  --surface: var(--vivid-surface);
+  --major-content: var(--vivid-major-content);
+  --minor-content: var(--vivid-minor-content);
+}
+
+:where(.vivid) {
+  --vivid-surface: var(--theme-neutral-vivid-background);
+  --content: var(--major-content);
+}
+
+:where(.vivid) .vivid {
+  --surface: var(--soft-surface);
+  --major-content: var(--soft-major-content);
+  --minor-content: var(--theme-minor-content);
+}
+
+:where(.vivid .vivid) .vivid {
+  --surface: var(--vivid-surface);
+  --major-content: var(--vivid-major-content);
+  --minor-content: var(--vivid-minor-content);
+}
