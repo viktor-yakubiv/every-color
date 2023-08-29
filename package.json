@@ -28,7 +28,7 @@
     "sass": "^1.44.0"
   },
   "scripts": {
-    "build": "sass --no-source-map src:dist",
+    "build": "sass --no-source-map --no-charset src:dist",
     "pretest": "npm run build",
     "test": "jest"
   }
