@@ -23,16 +23,12 @@ $all-accents: list.join(neutral, list.join($brand-accents, $semantic-accents));
 }
 
 @mixin emphasis($emphasis: list.nth($emphasises, 1)) {
-  --content:
-    var(--context-#{$emphasis}-content,
-    var(--#{$emphasis}-content));
+  --content: var(--#{$emphasis}-content);
 }
 
 @mixin accent($accent: list.nth($all-accents, 1)) {
   @each $emphasis in $emphasises {
-    #{$emphasis}-content:
-      var(--context-#{$emphasis}-content,
-      var(--theme-#{$accent}-#{$emphasis}-content));
+    --#{$emphasis}-content: var(--theme-#{$accent}-#{$emphasis}-content);
   }
 
   --surface: var(--theme-#{$accent}-background);

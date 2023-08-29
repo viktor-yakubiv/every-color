@@ -11,6 +11,7 @@
  */
 
 @use 'sass:list';
+@use 'mixins' as *;
 
 $brand-accents: primary;
 $semantic-accents: info, positive, warning, danger;
@@ -27,22 +28,26 @@ $all-accents: list.join(neutral, list.join($brand-accents, $semantic-accents));
   color: var(--content);
 }
 
-@each $accent in $all-accents {
+.neutral {
+  @include accent('neutral');
+}
+
+@each $accent in $brand-accents {
   .#{$accent} {
-    --surface: var(--theme-#{$accent}-background);
-    --major-content:
-      var(--context-major-content,
-      var(--theme-#{$accent}-major-content));
-    --minor-content:
-      var(--context-minor-content,
-      var(--theme-#{$accent}-minor-content));
+    @include accent($accent);
   }
 }
 
 @each $accent in $semantic-accents {
-  .#{$accent} > * {
-    --context-surface: transparent;
-    --context-major-content: var(--theme-#{$accent}-major-content);
-    --context-minor-content: var(--theme-#{$accent}-minor-content);
+  .#{$accent} {
+    @include accent($accent);
+  }
+
+  .#{$accent}[class] > * {
+    @include accent($accent);
+  }
+
+  .#{$accent}[class] :where(.surface) {
+    background: transparent;
   }
 }
