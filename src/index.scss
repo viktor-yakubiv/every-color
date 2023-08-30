@@ -7,31 +7,23 @@ $accents: list.join(neutral, list.join($brand-accents, $semantic-accents));
 
 
 /**
- * Content
+ * Objects
  *
- * Text and icons.
+ * There are two types of objects:
+ * - Content
+ * - Surface
  *
- * It could be major with high emphasis or minor — with low emphasis
- * respectively. Also, it respects color accents if and only if used
- * on the neutral surface or background.
+ * Content is a generalisation for text and icons.
+ * When applied with no modifiers, it does not do anything;
+ * it is a placeholder object for extra verbosity or context control
+ * in some cases.
  *
- * Bare content does not mean anything and inherits context.
- * It is a placeholder class to control the application context
- * for modifiers.
+ * Surface applies background for itself along with the content colors
+ * that could be used on it. Surface with no modifiers applied is neutral
+ * in regard to the current theme.
  */
 
 .content {}
-
-
-/**
- * Surface
- *
- * Applies background for itself along with the content colors
- * that could be used on the current surface.
- *
- * Bare surface expects to be default and neutral in regard to the current
- * theme. Can be configured with accent and/or contrast classes.
- */
 
 .surface {
   @include surface;
