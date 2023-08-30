@@ -1,0 +1,111 @@
+@use 'sass:list';
+@use 'mixins' as *;
+
+$brand-accents: primary;
+$semantic-accents: info, positive, warning, danger;
+$accents: list.join(neutral, list.join($brand-accents, $semantic-accents));
+
+
+/**
+ * Content
+ *
+ * Text and icons.
+ *
+ * It could be major with high emphasis or minor — with low emphasis
+ * respectively. Also, it respects color accents if and only if used
+ * on the neutral surface or background.
+ *
+ * Bare content does not mean anything and inherits context.
+ * It is a placeholder class to control the application context
+ * for modifiers.
+ */
+
+.content {}
+
+
+/**
+ * Surface
+ *
+ * Applies background for itself along with the content colors
+ * that could be used on the current surface.
+ *
+ * Bare surface expects to be default and neutral in regard to the current
+ * theme. Can be configured with accent and/or contrast classes.
+ */
+
+.surface {
+  @include surface;
+}
+
+:where(.surface) {
+  @each $emphasis in $emphasises {
+    --#{$emphasis}-content: var(--theme-neutral-#{$emphasis}-content);
+  }
+}
+
+/**
+ * Accent
+ *
+ * Applies a color schema to either content or surface.
+ *
+ * An accent could be used on a neutral or a vibrant surface in regards to
+ * the current theme. Color accents apply both and rely on a proper resolution
+ * by the the surface itself.
+ *
+ * See Contrast modifiers as well.
+ */
+
+:root {
+  --major-content:
+    var(--theme-major-content,
+    var(--theme-neutral-major-content));
+  --minor-content:
+    var(--theme-minor-content,
+    var(--theme-neutral-minor-content));
+  --content: var(--major-content);
+  color: var(--content);
+}
+
+.neutral {
+  @include accent('neutral');
+}
+
+@each $accent in $brand-accents {
+  .#{$accent} {
+    @include accent($accent);
+  }
+}
+
+@each $accent in $semantic-accents {
+  .#{$accent} {
+    @include accent($accent);
+  }
+
+  .#{$accent}[class] > * {
+    @include accent($accent);
+  }
+
+  .#{$accent}[class] :where(.surface) {
+    background: transparent;
+  }
+}
+
+/**
+ * Emphasis
+ *
+ * Applies emphasis level to text and icons. Could be major — high, contrasting
+ * well with the surface, or minor (medium) — contrasting with surface to
+ * be noticed but do not create noise.
+ *
+ * If appears on semantic surface, always respects it's color even if combined
+ * with own accent.
+ */
+
+@each $emphasis in $emphasises {
+  .#{$emphasis} {
+    @include emphasis($emphasis);
+		@include content;
+  }
+}
+
+@import 'shorthands';
