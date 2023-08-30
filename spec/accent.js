@@ -20,7 +20,7 @@ const injectPrecedencePage = (options = {
           Between ${accents.slice(0, -1).join(', ')} and <b>${accents.at(-1)}</b>
           the later defines the dominant surface
         </div>
-      `).join('')}
+      `).join('\n')}
     </div>
   `, options)
 }
@@ -38,6 +38,44 @@ const testPrecedence = async (...accents) => {
   })
 }
 
+const injectNestingPage = (targetAccents, allAccents = accents) =>
+  injectPage(targetAccents.map(parent => `
+    <div class="stack">
+      ${allAccents.map(child => `
+        <p class="${parent} content">
+          <span class="${child} content">${child} content</span>
+          in ${parent} content
+        </p>
+
+        <div class="a box and switcher with ${parent} surface">
+          <p class="a box with ${child} content">
+            ${child} content on ${parent} surface
+          </p>
+
+          <div class="a box with ${child} surface">
+            ${child} surface on ${parent} surface
+          </div>
+        </div>
+      `).join('\n')}
+    </div>
+  `).join('\n'))
+
+const testNesting = async (parent, child, style) => {
+  const { color, backgroundColor } = style
+
+  const contentInContent = `.${parent}.content .${child}.content`
+  await expect(styleOf(contentInContent)).toMatchStyle({ color })
+
+  const contentOnSurface = `.${parent}.surface .${child}.content`
+  await expect(styleOf(contentOnSurface)).toMatchStyle({ color })
+
+  const surfaceOnSurface = `.${parent}.surface .${child}.surface`
+  await expect(styleOf(surfaceOnSurface)).toMatchStyle({
+    color,
+    backgroundColor,
+  })
+}
+
 describe('neutral', () => {
   it('has the lowest precedence', () => {
     // passes if the following one passes
@@ -52,16 +90,27 @@ describe('brand accent', () => {
     }
   })
 
-  it.todo('can be redefined in any level of nesting')
+  it('can be redefined in any level of nesting', async () => {
+    injectNestingPage(brandAccents)
+
+    for (const parent of brandAccents) {
+      for (const child of accents) {
+        await testNesting(parent, child, {
+          color: useVar({ accent: child, emphasis: emphasises.at() }),
+          backgroundColor: useVar({ accent: child }),
+        })
+      }
+    }
+  })
 })
 
 describe('semantic accent', () => {
   it('takes precedence over brand accents', async () => {
     await injectPrecedencePage()
     for (const brandAccent of brandAccents) {
-      // `info` has the lowest precedence within all semantic accents
-      // so we need to compare against it
-      await testPrecedence(brandAccent, 'info')
+      // comparing against the first item from semantic accents
+      // which should have the lowest precedence
+      await testPrecedence(brandAccent, semanticAccents.at())
     }
   })
 
@@ -75,40 +124,12 @@ describe('semantic accent', () => {
   })
 
   it('cannot be redefined in context', async () => {
-    await injectPage(semanticAccents.map(parent => `
-      <div class="stack">
-        ${accents.map(child => `
-          <p class="${parent} content">
-            <span class="${child} content">${child} content</span>
-            in ${parent} content
-          </p>
-
-          <div class="a box and switcher with ${parent} surface">
-            <p class="a box with ${child} content">
-              ${child} content on ${parent} surface
-            </p>
-
-            <div class="a box with ${child} surface">
-              ${child} surface on ${parent} surface
-            </div>
-          </div>
-        `).join('\n')}
-      </div>
-    `).join('\n'))
+    await injectNestingPage(semanticAccents)
 
     for (const parent of semanticAccents) {
       for (const child of accents) {
-        const color = useVar({ accent: parent, emphasis: 'major' })
-
-        const contentInContent = `.${parent}.content .${child}.content`
-        await expect(styleOf(contentInContent)).toMatchStyle({ color })
-
-        const contentOnSurface = `.${parent}.surface .${child}.content`
-        await expect(styleOf(contentOnSurface)).toMatchStyle({ color })
-
-        const surfaceOnSurface = `.${parent}.surface .${child}.surface`
-        await expect(styleOf(surfaceOnSurface)).toMatchStyle({
-          color,
+        await testNesting(parent, child, {
+          color: useVar({ accent: parent, emphasis: emphasises.at() }),
           backgroundColor: 'transparent',
         })
       }
