@@ -7,7 +7,7 @@ $accents: list.join(neutral, list.join($brand-accents, $semantic-accents));
 
 
 /**
- * Objects
+ * Object
  *
  * There are two types of objects:
  * - Content
@@ -26,14 +26,15 @@ $accents: list.join(neutral, list.join($brand-accents, $semantic-accents));
 .content {}
 
 .surface {
-  @include surface;
+	@include surface;
 }
 
 :where(.surface) {
-  @each $emphasis in $emphasises {
-    --#{$emphasis}-content: var(--theme-neutral-#{$emphasis}-content);
-  }
+	@each $emphasis in $emphasises {
+		--#{$emphasis}-content: var(--theme-neutral-#{$emphasis}-content);
+	}
 }
+
 
 /**
  * Accent
@@ -48,38 +49,38 @@ $accents: list.join(neutral, list.join($brand-accents, $semantic-accents));
  */
 
 :root {
-  --major-content:
-    var(--theme-major-content,
-    var(--theme-neutral-major-content));
-  --minor-content:
-    var(--theme-minor-content,
-    var(--theme-neutral-minor-content));
-  --content: var(--major-content);
-  color: var(--content);
+	--major-content:
+		var(--theme-major-content,
+		var(--theme-neutral-major-content));
+	--minor-content:
+		var(--theme-minor-content,
+		var(--theme-neutral-minor-content));
+	--content: var(--major-content);
+	color: var(--content);
 }
 
 .neutral {
-  @include accent('neutral');
+	@include accent('neutral');
 }
 
 @each $accent in $brand-accents {
-  .#{$accent} {
-    @include accent($accent);
-  }
+	.#{$accent} {
+		@include accent($accent);
+	}
 }
 
 @each $accent in $semantic-accents {
-  .#{$accent} {
-    @include accent($accent);
-  }
+	.#{$accent} {
+		@include accent($accent);
+	}
 
-  .#{$accent}[class] > * {
-    @include accent($accent);
-  }
+	.#{$accent}[class] > * {
+		@include accent($accent);
+	}
 
-  .#{$accent}[class] :where(.surface) {
-    background: transparent;
-  }
+	.#{$accent}[class] :where(.surface) {
+		background: transparent;
+	}
 }
 
 /**
@@ -94,10 +95,10 @@ $accents: list.join(neutral, list.join($brand-accents, $semantic-accents));
  */
 
 @each $emphasis in $emphasises {
-  .#{$emphasis} {
-    @include emphasis($emphasis);
+	.#{$emphasis} {
+		@include emphasis($emphasis);
 		@include content;
-  }
+	}
 }
 
 @import 'shorthands';
