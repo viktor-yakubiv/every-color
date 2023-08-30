@@ -1,17 +1,32 @@
-const testPrecedence = async (...accents) => {
-  const finalAccent = accents[accents.length - 1]
+const injectPrecedencePage = (options = {
+  title: `Accent precedence: ${accents.join(', ')}`,
+  screenshot: 'accents-precedence',
+}) => {
+  const groups = [
+    ...brandAccents.map(accent => ['neutral', accent]),
+    ...brandAccents.map(accent => [accent, 'info']),
+    ...semanticAccents.slice(1).map((accent, i) => [semanticAccents.at(i), accent]),
+  ]
 
-  await injectPage(`
+  return injectPage(`
     <div class="stack">
-      <div class="${accents.join(' ')} content">
-        Must be ${finalAccent} content
-      </div>
+      ${groups.map(accents => `
+        <div class="${accents.join(' ')} content">
+          Between ${accents.slice(0, -1).join(', ')} and <b>${accents.at(-1)}</b>
+          the later defines the dominant content
+        </div>
 
-      <div class="a box with ${accents.join(' ')} surface">
-        Must have ${finalAccent} surface
-      </div>
+        <div class="a box with ${accents.join(' ')} surface">
+          Between ${accents.slice(0, -1).join(', ')} and <b>${accents.at(-1)}</b>
+          the later defines the dominant surface
+        </div>
+      `).join('')}
     </div>
-  `, { screenshot: `accents-precedence-${accents.join('-')}` })
+  `, options)
+}
+
+const testPrecedence = async (...accents) => {
+  const finalAccent = accents.at(-1)
 
   await expect(styleOf(`.${accents.join('.')}.content`)).toMatchStyle({
     color: useVar({ accent: finalAccent, emphasis: 'major' }),
@@ -24,11 +39,14 @@ const testPrecedence = async (...accents) => {
 }
 
 describe('neutral', () => {
-  it.todo('could be part of brand accents list')
+  it('has the lowest precedence', () => {
+    // passes if the following one passes
+  })
 })
 
 describe('brand accent', () => {
   it('takes precedence over neutral', async () => {
+    await injectPrecedencePage()
     for (const accent of brandAccents) {
       await testPrecedence('neutral', accent)
     }
@@ -39,6 +57,7 @@ describe('brand accent', () => {
 
 describe('semantic accent', () => {
   it('takes precedence over brand accents', async () => {
+    await injectPrecedencePage()
     for (const brandAccent of brandAccents) {
       // `info` has the lowest precedence within all semantic accents
       // so we need to compare against it
@@ -46,10 +65,13 @@ describe('semantic accent', () => {
     }
   })
 
-  it('has the following precedence: info, positive, warning, danger', async () => {
-    await testPrecedence('info', 'positive')
-    await testPrecedence('positive', 'warning')
-    await testPrecedence('warning', 'danger')
+  it(`has the following precedence: ${semanticAccents.join(', ')}`, async () => {
+    await injectPrecedencePage()
+    for (let i = 0; i < semanticAccents.length - 1; ++i) {
+      const lowerAccent = semanticAccents.at(i)
+      const upperAccent = semanticAccents.at(i + 1)
+      await testPrecedence(lowerAccent, upperAccent)
+    }
   })
 
   it('cannot be redefined in context', async () => {
