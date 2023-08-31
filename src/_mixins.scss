@@ -8,12 +8,6 @@ $all-accents: list.join(neutral, list.join($brand-accents, $semantic-accents));
 
 @mixin content {
   color: var(--content);
-
-  // TODO: Reconsider placement as this is not needed for short-hands
-  //       but needed for .content and .surface
-  // :where(#{&}) {
-  //   @include emphasis;
-  // }
 }
 
 @mixin surface {

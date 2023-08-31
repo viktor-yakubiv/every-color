@@ -1,4 +1,5 @@
 @use 'sass:list';
+@use 'functions' as *;
 @use 'mixins' as *;
 
 $brand-accents: primary;
@@ -32,6 +33,25 @@ $accents: list.join(neutral, list.join($brand-accents, $semantic-accents));
 :where(.surface) {
 	@each $emphasis in $emphasises {
 		--#{$emphasis}-content: var(--theme-neutral-#{$emphasis}-content);
+	}
+}
+
+
+/**
+ * Emphasis
+ *
+ * Applies emphasis level to text and icons. Could be major — high, contrasting
+ * well with the surface, or minor (medium) — contrasting with surface to
+ * be noticed but do not create noise.
+ *
+ * If appears on semantic surface, always respects it's color even if combined
+ * with own accent.
+ */
+
+@each $emphasis in $emphasises {
+	.#{$emphasis} {
+		@include emphasis($emphasis);
+		@include content;
 	}
 }
 
@@ -74,31 +94,20 @@ $accents: list.join(neutral, list.join($brand-accents, $semantic-accents));
 		@include accent($accent);
 	}
 
+	// Forcing higher level selector for nested elements under semantic accents
+	// to prevent overriding
 	.#{$accent}[class] > * {
 		@include accent($accent);
 	}
-
-	.#{$accent}[class] :where(.surface) {
-		background: transparent;
-	}
 }
 
-/**
- * Emphasis
- *
- * Applies emphasis level to text and icons. Could be major — high, contrasting
- * well with the surface, or minor (medium) — contrasting with surface to
- * be noticed but do not create noise.
- *
- * If appears on semantic surface, always respects it's color even if combined
- * with own accent.
- */
-
-@each $emphasis in $emphasises {
-	.#{$emphasis} {
-		@include emphasis($emphasis);
-		@include content;
-	}
+// TODO: Can surface be placed under a content with accent?
+// TODO: Can a surface under a content with accent redefine the context?
+:is(#{to-classes($semantic-accents)}) .surface {
+	background: transparent;
 }
 
-@import 'shorthands';
+:where(#{to-classes($all-accents)}) {
+	@include emphasis;
+	@include content;
+}

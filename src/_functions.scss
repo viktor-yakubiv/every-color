@@ -1,0 +1,12 @@
+@use 'sass:list';
+@use 'sass:string';
+
+@function to-classes($names) {
+	$class-names: ();
+	@each $name in $names {
+		$selector: string.insert($name, '.', 0);
+		$class-names: list.append($class-names, $selector, $separator: comma);
+	}
+	@return $class-names;
+}
+
