@@ -1,5 +1,6 @@
 {
   "name": "@yakubiv/every-color",
+  "type": "module",
   "version": "0.1.0",
   "description": "A library for writing meaningful semantic English sentences instead nerdy CSS classes",
   "keywords": [
@@ -16,9 +17,6 @@
     "*.css"
   ],
   "devDependencies": {
-    "@babel/core": "^7.22.11",
-    "@babel/preset-env": "^7.22.14",
-    "babel-jest": "^29.6.4",
     "change-case": "^4.1.2",
     "http-server": "^14.1.1",
     "jest": "^29.6.4",
@@ -30,6 +28,6 @@
   "scripts": {
     "build": "sass --no-source-map --no-charset src:dist",
     "pretest": "npm run build",
-    "test": "jest"
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
   }
 }
