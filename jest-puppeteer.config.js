@@ -5,6 +5,9 @@ module.exports = {
   },
 
   launch: {
-    headless: process.env.HEADLESS !== 'false',
+    headless:
+      ['false', 'no', '0'].includes(String(process.env.HEADLESS).toLowerCase())
+        ? false
+        : 'new',
   },
 }
