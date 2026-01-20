@@ -17,13 +17,13 @@
     "*.css"
   ],
   "devDependencies": {
-    "change-case": "^4.1.2",
+    "change-case": "^5",
     "http-server": "^14.1.1",
-    "jest": "^29.6.4",
-    "jest-matcher-utils": "^29.6.4",
-    "jest-puppeteer": "^9.0.0",
-    "puppeteer": "^21.1.1",
-    "sass": "^1.66.1"
+    "jest": "^30",
+    "jest-matcher-utils": "^30",
+    "jest-puppeteer": "^11",
+    "puppeteer": "^24",
+    "sass": "^1.97"
   },
   "scripts": {
     "build": "sass --no-source-map --no-charset src:dist",
