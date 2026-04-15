@@ -16,15 +16,15 @@
     "*.css"
   ],
   "devDependencies": {
-    "@babel/core": "^7.16.0",
-    "@babel/preset-env": "^7.16.4",
-    "babel-jest": "^27.3.1",
-    "change-case": "^4.1.2",
-    "http-server": "^14.0.0",
-    "jest": "^27.3.1",
-    "jest-matcher-utils": "^27.4.2",
-    "jest-puppeteer": "^6.0.0",
-    "puppeteer": "^11.0.0"
+    "@babel/core": "^7",
+    "@babel/preset-env": "^7",
+    "babel-jest": "^30",
+    "change-case": "^5",
+    "http-server": "^14",
+    "jest": "^30",
+    "jest-matcher-utils": "^30",
+    "jest-puppeteer": "^11",
+    "puppeteer": "^24"
   },
   "scripts": {
     "test": "jest"
