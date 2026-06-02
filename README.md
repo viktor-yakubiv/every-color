@@ -5,6 +5,16 @@
   Please help us defend freedom, democracy and Ukraine's right to exist.
 ](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner-direct-single.svg)](https://vshymanskyy.github.io/StandWithUkraine)
 
+> [!NOTE]
+> **Archivation notice:**
+> This was an interesting exploration
+> of styling using classes forming a natural language.
+> Unfortunatelly,
+> I don't have time to maintain this project anymore.
+> I wish to return to it or incorporate this into
+> a larger library
+> but no actual plan exists at the moment.
+
 # Every Color
 
 _Write language, not code._
